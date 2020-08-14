@@ -19,7 +19,7 @@ def login(request):
 
 @login_required(login_url='/registration/login')
 def main(request):
-    pass
+    return render(request, '1_main.html')
 
 @login_required(login_url='/registration/login')
 def create(request):
@@ -97,7 +97,7 @@ def lookup(request):
 def blurredlist(request, user_pk):
     pass
 
-@login_required(login_url='/registration/login')
+
 def signup(request):
     if request.method == "POST":
         found_user = User.objects.filter(username=request.POST['username'])
@@ -114,5 +114,10 @@ def signup(request):
 
 @login_required(login_url='/registration/login')
 def logout(request):
+    auth.logout(request)
+    return redirect('login')
+
+@login_required(login_url='/registration/login')
+def mypage(request):
     auth.logout(request)
     return redirect('login')

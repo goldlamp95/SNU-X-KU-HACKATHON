@@ -22,7 +22,7 @@ urlpatterns = [
     # 랜딩 페이지가 로그인에 같이 있음
     path('', views.login, name="login"),
     # 1번
-    path('main', views.main, name="main")
+    path('main', views.main, name="main"),
     # 2번
     path('create', views.create, name="create"),
     # 3번
@@ -51,4 +51,5 @@ urlpatterns = [
     # authentication
     path('registration/signup', views.signup, name="signup"),
     path('registration/logout', views.logout, name="logout"),
+    path('registration/mypage', views.mypage, name="mypage"),
 ]
