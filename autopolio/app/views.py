@@ -14,7 +14,7 @@ def login(request):
             error = "아이디 또는 비밀번호가 틀렸습니다"
             return render(request, 'registration/login.html', {'error':error})
         auth.login(request, found_user)
-        return redirect('main')
+        return redirect('main',user_pk)
     return render (request, 'registration/login.html')
 
 
@@ -204,14 +204,8 @@ def blurredlist(request, user_pk):
     pass
 
 @login_required(login_url='/registration/login')
-<<<<<<< HEAD
-def mypage(request):
-    pass
-=======
 def mypage(request, user_pk):
     pass
-
->>>>>>> 93f45c19bbb41d39c35cc342fe26e39cb9b42c6c
 
 def signup(request):
     if request.method == "POST":
@@ -233,14 +227,9 @@ def signup(request):
         user.autouser.major = request.POST['major']
         user.autouser.occupation = request.POST['occupation']
         user.save()
-<<<<<<< HEAD
-        auth.login(request,user)
-        
-=======
 
         auth.login(request, user)
 
->>>>>>> 93f45c19bbb41d39c35cc342fe26e39cb9b42c6c
 
         return redirect('main')
     else:
@@ -255,14 +244,16 @@ def logout(request):
 def lookup(request):
     user=request.user
     my_occupation=user.autouser.occupation
+    licenses=License.objects.all()
+    clubs=Club.objects.all()
+    papers=Paper.objects.all()
+    interns=Intern.objects.all()
+    others=Other.objects.all()
     filtered_users=AutoUser.objects.filter(occupation=my_occupation).exclude(user=user)
-    return render(request, '7_lookup.html',{'filtered_users':filtered_users})
+    return render(request, '7_lookup.html',{'filtered_users':filtered_users,'clubs':clubs,'papers':papers,'interns':interns,'others':others,'licenses':licenses})
 
 
 def mypage(request):
-<<<<<<< HEAD
-    pass
-=======
     user=request.user
     user_id=user.id
     if request.method=='POST':
@@ -272,4 +263,3 @@ def mypage(request):
         return redirect('main')
     else:
         return render(request, 'registration/mypage.html')
->>>>>>> 93f45c19bbb41d39c35cc342fe26e39cb9b42c6c

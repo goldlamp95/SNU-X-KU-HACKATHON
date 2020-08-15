@@ -9,6 +9,8 @@
     <div>{{intern.upload_file}}</div>
 </div>
 
+{% if request.user==intern.user %}
 <a href="{% url 'update_intern' user.pk intern.pk %}">수정하기</a>
+{% endif %}
 
 {% endblock content %}

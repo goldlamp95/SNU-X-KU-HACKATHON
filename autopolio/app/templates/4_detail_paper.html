@@ -7,6 +7,7 @@
     <div>{{paper.upload_file}}</div>
 </div>
 
+{% if request.user==paper.user %}
 <a href="{% url 'update_paper' user.pk paper.pk %}">수정하기</a>
-
+{% endif %}
 {% endblock content %}
