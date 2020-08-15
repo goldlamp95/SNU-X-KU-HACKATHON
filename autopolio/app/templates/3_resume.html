@@ -2,10 +2,12 @@
 
 {% block content %}
 
+<div>프로필 사진 {{profile}} </div>
+
 <div>자격증</div>
 {% for license in licenses %}
 <div>
-    <div>{{license.title}}</div>
+    <div><a href="{%url 'detail_license' user.pk license.pk %}">{{license.title}}</a></div>
     <div>{{license.score}}</div>
     <div>{{license.date}}</div>
 </div>
@@ -14,8 +16,8 @@
 <div>경력사항</div>
 {% for intern in interns %}
 <div>
-    <div>{{inter.title}}</div>
-    <div>f '{{intern.start_date}} - {{intern.end_date}}'</div>
+    <div><a href="{% url 'detail_intern' user.pk intern.pk %}">{{intern.title}}</a></div>
+    <div>{{intern.start_date}} - {{intern.end_date}}</div>
 </div>
 {% endfor %}    
 
@@ -23,7 +25,7 @@
 <div>동아리/대외활동</div>
 {% for club in clubs  %}
 <div>
-    <div><a href="{% url 'detail_club' club_pk %}">{{club.title}}</a></div>
+    <div><a href="{% url 'detail_intern' user.pk club.pk %}">{{club.title}}</a></div>
     <div>{{club.role}}</div>
     <div>{{club.start_date}}</div>
     <div>{{club.end_date}}</div>
@@ -33,7 +35,7 @@
 <div>공모전/논문/프로젝트</div>
 {% for paper in papers %}
 <div>
-    <div>{{paper.title}}</div>
+    <div><a href="{% url 'detail_intern' user.pk paper.pk %}">{{paper.title}}</a></div>
     <div>{{paper.date}}</div>
 </div>
 {% endfor %}
@@ -41,7 +43,7 @@
 <div>그 외 활동</div>
 {% for other in others %}
 <div>
-    <div>{{other.title}}</div>
+    <div><a href = "{% url 'detail_other' user.pk other.pk %}">{{other.title}}</a></div>
     <div>{{other.summary}}</div>
 </div>
 {% endfor %}

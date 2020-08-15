@@ -15,7 +15,7 @@ def login(request):
             return render(request, 'registration/login.html', {'error':error})
         auth.login(request, found_user)
         return redirect('main')
-    return render(request, 'registration/login.html')
+    return render (request, 'registration/login.html')
 
 @login_required(login_url='/registration/login')
 def main(request):
@@ -28,13 +28,15 @@ def create(request):
 
 def resume(request, user_pk):
     if request.method == 'GET':
-        licenses = License.objects.filter(pk=user_pk)
-        interns = Intern.objects.filter(pk=user_pk)
-        clubs = Club.objects.filter(pk=user_pk)
-        papers = Paper.objects.filter(pk=user_pk)
-        others = Other.objects.filter(pk=user_pk)
+        profile = AutoUser.profile
+        licenses = License.objects.filter(user__id=user_pk)
+        interns = Intern.objects.filter(user__id=user_pk)
+        clubs = Club.objects.filter(user__id=user_pk)
+        papers = Paper.objects.filter(user__id=user_pk)
+        others = Other.objects.filter(user__id=user_pk)
 
         resumes = {
+            'profile' : profile,
             'licenses':licenses,
             'interns': interns,
             'clubs': clubs,
@@ -46,7 +48,21 @@ def resume(request, user_pk):
 
 @login_required(login_url='/registration/login')
 def detail_license(request, user_pk, license_pk):
-    pass
+    license = License.objects.get(pk = license_pk)
+
+    if request.method == 'POST':
+        License.objects.filter(pk = license_pk).update(
+            title = request.POST['title'],
+            score = request.POST['score'],
+            date_added = request.POST['date_added'],
+            date_achieved = request.POST['date_achieved'],
+            uploaded_file = request.POST['upload_file']
+
+        )
+        return redirect('resume', user_pk)
+    return render(request, '4_detail_license.html')
+        
+
 
 @login_required(login_url='/registration/login')
 def detail_intern(request, user_pk, intern_pk):
