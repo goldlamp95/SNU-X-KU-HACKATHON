@@ -1,4 +1,5 @@
 <!-- login, signup, mypage nav bar로 -->
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Base Page</title>
+    <link rel="stylesheet" href="../static/base.css">
+    <title>{% block title %}The Base Page{% endblock title %}</title>
+    {% block css %}{% endblock css %}
 </head>
 
 <body>
