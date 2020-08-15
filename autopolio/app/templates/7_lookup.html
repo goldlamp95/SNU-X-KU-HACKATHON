@@ -1,0 +1,25 @@
+{% for resume in resumes %}
+    <div class="resumeBox">
+        <div class="resume"> {{ resume.user.id }}</div>
+            <div class="licenseBox">
+                {% for licesne in resume.license_set.all%}
+                    {{license.title }}
+                {% endfor %}
+            </div>
+            <div class="internBox">
+                {% for intern in resume.intern_set.all%}
+                    {{intern.title }}
+                {% endfor %}
+            </div>    
+            <div class="paperBox">
+                {% for paper in resume.paper_set.all%}
+                    {{paper.title }}
+                {% endfor %}
+            </div> 
+            <div class="otherBox">
+                {% for other in resume.other_set.all%}
+                    {{other.title }}
+                {% endfor %}
+            </div>   
+    </div>
+{% endfor %}

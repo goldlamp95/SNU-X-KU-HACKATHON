@@ -116,3 +116,15 @@ def signup(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
+
+def lookup(request):
+    user=Autouser.objects.filter(user=request.user)
+    my_occupation=user.occupation
+    filtered_users=Autouser.objects.filter(occupation=my_occupation)
+    resumes=Resume.objects.filter(user__occupation=my_occupation)
+    licenses=License.objects.filter(occupation=my_occupation)
+    papers=Papaer.objects.filter(occupation=my_occupation)
+    interns=Intern.objects.filter(occupation=my_occupation)
+    others=Other.objects.filter(occupation=my_occupation)
+    return render(request, 'templates/7_lookup.html',{'resumes':resumes})
+
