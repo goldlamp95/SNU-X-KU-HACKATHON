@@ -1,0 +1,41 @@
+.box {
+    
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.bigbox {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img1 {
+    height: 200px;
+    width: 200px;
+}
+.img2 {
+    margin-left: 150px;
+    height: 220px;
+    width: 220px;
+}
+.smallbox {
+    width: 300px;
+    height: 100px;
+    border: solid 1.5px #222222;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    border-radius: 15px;
+}
+
+a{
+    text-decoration:none;
+    color:black;
+}
