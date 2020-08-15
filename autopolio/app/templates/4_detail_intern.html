@@ -10,7 +10,7 @@
 </div>
 
 {% if request.user == intern.user %}
-<a href="{% url 'update_intern' user.pk intern.pk %}">수정하기</a>
-<a href="{% url 'delete_intern' user.pk intern.pk %}">삭제하기</a>
+    <a href="{% url 'update_intern' user.pk intern.pk %}">수정하기</a>
+    <a href="{% url 'delete_intern' user.pk intern.pk %}">삭제하기</a>
 {% endif %}
 {% endblock content %}
