@@ -6,7 +6,7 @@
     <div>{{license.score}}</div>
     <div>{{license.date_achieved}}</div>
     <div>{{license.date_added}}</div>
-    <img src=../../documents/{{license.upload_file}}>
+    <img src=../../documents/{{license.upload_file}} height=300px;>
 </div>
 
 <a href="{% url 'update_license' user.pk license.pk %}">수정하기</a>
