@@ -264,7 +264,13 @@ def lookup(request):
     interns=Intern.objects.all()
     others=Other.objects.all()
     filtered_users=AutoUser.objects.filter(occupation=my_occupation).exclude(user=user)
-    return render(request, '7_lookup.html',{'filtered_users':filtered_users,'clubs':clubs,'papers':papers,'interns':interns,'others':others,'licenses':licenses})
+    follow_list=[]
+    number=Follow.objects.filter(follow_from=user.autouser).count()
+
+    for i in range(number):
+        follow_list.append(Follow.objects.filter(follow_from=user.autouser)[i].follow_to)
+
+    return render(request, '7_lookup.html',{'filtered_users':filtered_users,'clubs':clubs,'papers':papers,'interns':interns,'others':others,'licenses':licenses,'follow_list':follow_list})
 
 @login_required(login_url='/registration/login')
 def mypage(request):
@@ -286,8 +292,10 @@ def mypage(request):
 
 
 def follow(request, user_pk):
+    # print('follow')
     follow_from = AutoUser.objects.get(user_id = request.user.id)
     follow_to = AutoUser.objects.get(user_id = user_pk)
     f=Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
+    print(f)
     f.save()
     return redirect('/lookup')

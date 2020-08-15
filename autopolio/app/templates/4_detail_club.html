@@ -8,7 +8,7 @@
     <div>{{club.upload_file}}</div>
 </div>
 
-{% if request.user==club.user %}
+{% if request.user == club.user %}
     <a href="{% url 'update_club' user.pk club.pk %}">수정하기</a>
     <a href="{% url 'delete_club' user.pk club.pk %}">삭제하기</a>
 {% endif %}

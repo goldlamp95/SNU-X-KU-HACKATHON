@@ -35,3 +35,9 @@ p {
     padding-left: 80px;
     padding-right: 80px;
 }
+
+a {
+    text-decoration:none;
+    color:black;
+    font-size:20px;
+}
