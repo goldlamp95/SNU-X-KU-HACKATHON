@@ -1,45 +1,52 @@
-.signup_main {
-  margin-top: 80px;
+.mypage_main {
+  margin-top: 150px;
   width: 100%;
   height: auto;
   position: relative;
   display: grid;
   grid-template-columns: 340px 450px;
-  grid-template-rows: 420px;
+  grid-template-rows: 350px;
   justify-content: center;
 }
 
-.signup_image {
+.mypage_image {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.signup_image > * {
+.mypage_image > * {
   width: 150px;
   height: 150px;
   align-content: center;
 }
 
-.signup_form {
+.mypage_form {
   display: grid;
-  grid-template-rows: 1fr 11fr;
+  grid-template-rows: 1fr 5fr;
 }
 
-.signup_form_main {
+.mypage_form_main {
   display: grid;
-  grid-template-rows: repeat(11,1fr);
+  grid-template-rows: repeat(6,1fr);
   grid-template-columns: 4fr 6fr;
 }
 
-.signup_form_main > *{
+.mypage_form_main > *{
   height: 20px;
   margin-block-start: 3px;
   margin-block-end: 3px;
 }
 
-.signup_form_button {
-  padding-top: 20px;
+.mypage_form_button {
+  padding-top: 30px;
+  height: 33px;
   display: flex;
+  justify-content: center;
+}
+.mypage_form_button_a {
+  width: 150px;
+  display: flex; 
+  align-items:center;
   justify-content: center;
 }
 .start {

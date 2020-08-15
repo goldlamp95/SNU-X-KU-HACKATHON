@@ -1,43 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>회원 정보 수정</h1>
-    <div class="questionBox" style="width:500px; height:auto">
-        <form method="POST" action="">
-          {% csrf_token %}
-          사용자 ID:
-          <br>
-          <input id="infochange_subtitle" name="username" type="text" value={{user.username}}>
-          <br>
-          <br>
-          이메일
-          <br>
-          <input id="infochange_subtitle" name="email" type="text" value={{user.email}}>
-          <br>
-          <br>
-          소속 대학교:
-          <br>
-          <input id="infochange_subtitle" name="university" type="text" value={{user.profile.university}}>
-          <br>
-          <br>
-          소속 전공:
-          <br>
-          <input id="infochange_subtitle" name="major" type="text" value={{user.profile.major}}>
-          <br>
-          <br>
-          계열:
-          <br>
-          <input id="infochange_subtitle" name="occupation" type="text" value={{user.profile.occupation}}>
-          <br>
-          <br>
-          <input id="info_change" type="submit" value="Change">
-          <br>
-        </form>
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'mypage.css' %}" />
+<div class="mypage_main">
+  <div class="mypage_image">
+    <img id="profile_photo" alt="" src="../../documents/{{profile}}">
+
+  </div>
+  <div class="mypage_form">
+    <h1 style="color: #D25430;">회원 정보 수정</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mypage_form_main">
+        <p>사용자 ID:</p>
+        <input name="username" type="text" value={{user.username}}>
+        <p>이메일</p>
+        <input name="email" type="text" value={{user.email}}>
+        <p>사진</p> 
+        <input type='file' id="upload_file" name="profile">
+        <p>소속 대학교:</p>
+        <input name="university" type="text" value={{user.profile.university}}>
+        <p>소속 전공:</p>
+        <input name="major" type="text" value={{user.profile.major}}>
+        <p>계열:</p>
+        <input name="occupation" type="text" value={{user.profile.occupation}}>
       </div>
-</body>
-</html>
+      <div class="mypage_form_button">
+        <button class="mypage_form_button_a" type="submit"><p class="start">수정하기</p></button>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script type="text/javascript">
+
+          $(function() {
+              $("#upload_file").on('change', function(){
+                  console.log(1)
+                  readURL(this);
+              });
+          });
+          function readURL(input) {
+              if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                      $('#profile_photo').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+              }
+          }
+      </script>
+
+
+    </form>
+  </div>
+</div>
+{% endblock content %}
