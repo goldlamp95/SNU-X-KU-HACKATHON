@@ -5,9 +5,10 @@ body {
 }
 
 .resume_body {
+    margin: auto;
+    margin-top: 100px;
     border: 6px solid #D25430; 
     width: 60%;
-    margin: auto;
     padding: 30px;
     border-radius: 25px;
 }
@@ -90,9 +91,9 @@ span {
     border-radius:10px;
 }
 
-a{
+.resume_body a{
     text-decoration:none;
     font-size: 25px;
-    color: black;
+    color: #595959;
     font-weight: bold;
 }

@@ -1,7 +1,10 @@
 *{
   font-family: 'Noto Sans KR', sans-serif;
+  color: #595959;
 }
-
+a {
+  text-decoration: none;
+}
 body {
   margin-left: 0px;
 }
