@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.fields import (
     DateField, DateTimeField, DurationField, Field, IntegerField, TimeField,
 )
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -15,7 +17,7 @@ class AutoUser(models.Model):
     university = models.CharField(max_length = 30, null = True, blank = True, default = '대학교를 입력하세요')
     class_year = models.IntegerField(null=True)
     major = models.TextField(null = True)
-    profile = models.ImageField(null=True, blank=True)
+    profile = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     occupation=models.TextField(null = True)
 
     def __str__(self):

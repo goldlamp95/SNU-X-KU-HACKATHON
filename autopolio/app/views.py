@@ -134,24 +134,26 @@ def signup(request):
         if len(found_user) > 0:
             error = "User name이 이미 존재합니다"
             return render(request, 'registration/signup.html', {'error':error})
-        new_user = User.objects.create(
+        user = User.objects.create_user(
             username = request.POST['username'],
             password = request.POST['password'],
-            )
-        new_AutoUser = AutoUser.objects.create(
-            user = new_user,
-            name = request.POST['name'],
-            date = request.POST['date'],
             email = request.POST['email'],
-            profile = request.POST['profile'],
-            high_school = request.POST['high_school'],
-            university = request.POST['university'],
-            major = request.POST['major'],
-            occupation = request.POST['occupation']
         )
-        auth.login(request, new_user) 
+        print(request.FILES)
+        user.autouser.name = request.POST['name']
+        user.autouser.date = request.POST['date']
+        user.autouser.profile = request.FILES['profile']
+        user.autouser.high_school = request.POST['high_school']
+        user.autouser.university = request.POST['university']
+        user.autouser.major = request.POST['major']
+        user.autouser.occupation = request.POST['occupation']
+        user.save()
+        
+
         return redirect('main')
-    return render(request, 'registration/signup.html') 
+    else:
+        autouser_form = AutoUserForm()
+        return render(request, 'registration/signup.html', {'autouser_form':autouser_form}) 
 
 @login_required(login_url='/registration/login')
 def logout(request):
@@ -163,3 +165,5 @@ def lookup(request):
     filtered_users=Autouser.objects.filter(occupation=my_occupation)
     return render(request, 'templates/7_lookup.html',{'filtered_users':filtered_users})
 
+def mypage(request):
+    pass
