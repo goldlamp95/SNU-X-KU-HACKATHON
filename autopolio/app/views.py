@@ -55,6 +55,10 @@ def create(request):
         'other_form':other_form
         })    
 
+from .ocr import toefl_ocr
+def create_OCR(request):
+    toefl_ocr(request)
+    return redirect('/main/')
 
 def resume(request, user_pk):
     if request.method == 'GET':
@@ -224,7 +228,7 @@ def signup(request):
         user.autouser.occupation = request.POST['occupation']
         user.save()
         
-
+        auth.login(request, user)
         return redirect('main')
     else:
         autouser_form = AutoUserForm()

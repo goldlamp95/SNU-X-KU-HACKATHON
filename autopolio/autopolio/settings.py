@@ -124,3 +124,11 @@ STATIC_URL = '/static/'
 import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'documents')
 MEDIA_URL = '/documents/'
+
+import json
+
+with open(os.path.join(BASE_DIR, 'config/secret.json')) as f:
+    secrets = json.loads(f.read())
+
+OCR_API_URL = secrets['OCR_API_URL']
+OCR_SECRET_KEY = secrets['OCR_SECRET_KEY']
