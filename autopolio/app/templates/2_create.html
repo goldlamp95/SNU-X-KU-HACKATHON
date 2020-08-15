@@ -9,6 +9,12 @@
 
 <body>
     <p>License</p>
+    <form action="/create_OCR/" method="post" enctype="multipart/form-data">
+        <h3>이미지로 업로드하기</h3></br>
+        {% csrf_token %}
+        <input type="file" name="Eng_score"/>
+        <input type="submit"/>
+    </form>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ license_form.category.as_hidden }}
