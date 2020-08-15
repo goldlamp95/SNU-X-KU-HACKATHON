@@ -8,9 +8,9 @@
     <div>{{other.upload_file}}</div>
 </div>
 
-{% if request.user==other.user %}
-<a href="{% url 'update_other' user.pk other.pk %}">수정하기</a>
-<a href="{% url 'delete_other' user.pk other.pk %}">삭제하기</a>
+{% if request.user == other.user %}
+    <a href="{% url 'update_other' user.pk other.pk %}">수정하기</a>
+    <a href="{% url 'delete_other' user.pk other.pk %}">삭제하기</a>
 {% endif %}
 
 {% endblock content %}

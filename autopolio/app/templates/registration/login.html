@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{% static 'login.css' %}" />
 </head>
 <body>
-    <p> Autopolio </p>
     <form method="post" action={% url 'login' %}>
         {% csrf_token %}
         <div class="big_box">
