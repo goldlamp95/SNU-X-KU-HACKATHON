@@ -19,11 +19,36 @@ def login(request):
 
 @login_required(login_url='/registration/login')
 def main(request):
-    pass
+    return render(request, '1_main.html')
 
-@login_required(login_url='/registration/login')
+
+from .forms import *
+# @login_required(login_url='/registration/login')
 def create(request):
-    pass
+    if request.method=='POST':
+        # license_form=LicenseForm(request.POST, request.FILES)
+        # intern_form=InternForm(request.POST, request.FILES)
+        # club_form=ClubForm(request.POST, request.FILES)
+        # paper_form=PaperForm(request.POST, request.FILES)
+        print(request.POST)
+        other_form=OtherForm(request.POST, request.FILES)
+        # if other_form.is_valid():
+        print(request.user)
+        newdoc = Other(
+            user = request.user,
+            title=request.POST['title'],
+            summary=request.POST['summary'],
+            upload_file=request.FILES['upload_file'])
+            # author_2 = request.user)
+        newdoc.save()
+        return redirect('create')
+        # else:
+        #     print(request.user)
+        #     print('error')
+    else:
+        other_form=OtherForm()
+    documents = Other.objects.all()
+    return render(request, '2_create.html', {'documents':documents,'form':other_form})    
 
 @login_required(login_url='/registration/login')
 def resume(request, user_pk):
@@ -97,7 +122,7 @@ def lookup(request):
 def blurredlist(request, user_pk):
     pass
 
-@login_required(login_url='/registration/login')
+
 def signup(request):
     if request.method == "POST":
         found_user = User.objects.filter(username=request.POST['username'])
@@ -118,13 +143,7 @@ def logout(request):
     return redirect('login')
 
 def lookup(request):
-    user=Autouser.objects.filter(user=request.user)
-    my_occupation=user.occupation
+    my_occupation=user.AutoUser.occupation
     filtered_users=Autouser.objects.filter(occupation=my_occupation)
-    resumes=Resume.objects.filter(user__occupation=my_occupation)
-    licenses=License.objects.filter(occupation=my_occupation)
-    papers=Papaer.objects.filter(occupation=my_occupation)
-    interns=Intern.objects.filter(occupation=my_occupation)
-    others=Other.objects.filter(occupation=my_occupation)
-    return render(request, 'templates/7_lookup.html',{'resumes':resumes})
+    return render(request, 'templates/7_lookup.html',{'filtered_users':filtered_users})
 

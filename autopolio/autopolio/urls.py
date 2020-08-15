@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from app import views
 
+#미디어 파일추가하기위해서
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # 랜딩 페이지가 로그인에 같이 있음
     path('', views.login, name="login"),
     # 1번
-    path('main', views.main, name="main")
+    path('main', views.main, name="main"),
     # 2번
     path('create', views.create, name="create"),
     # 3번
@@ -51,4 +55,5 @@ urlpatterns = [
     # authentication
     path('registration/signup', views.signup, name="signup"),
     path('registration/logout', views.logout, name="logout"),
-]
+    path('registration/mypage', views.mypage, name="mypage"),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
