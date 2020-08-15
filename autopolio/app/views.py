@@ -18,9 +18,7 @@ def login(request):
             request,
             found_user,
             backend = 'django.contrib.auth.backends.ModelBackend')
-        print('111')
         return render(request, '1_main.html')
-    
     return render (request, 'registration/login.html')
 
 
