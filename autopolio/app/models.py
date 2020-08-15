@@ -5,6 +5,9 @@ from django.db.models.fields import (
 )
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+
+
+
 # Create your models here.
 
 
@@ -19,10 +22,10 @@ class AutoUser(models.Model):
     major = models.TextField(null = True)
     profile = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     occupation=models.TextField(null = True)
-
+    
     def __str__(self):
         return self.name
-    
+
     @receiver(post_save, sender=User)
     def create_user_AutoUser(sender, instance, created, **kwargs):  
         if created:
