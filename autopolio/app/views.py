@@ -12,9 +12,13 @@ def login(request):
         )
         if found_user is None:
             error = "아이디 또는 비밀번호가 틀렸습니다"
+            print(error)
             return render(request, 'registration/login.html', {'error':error})
-        auth.login(request, found_user)
-        return redirect('main')
+        auth.login(
+            request,
+            found_user,
+            backend = 'django.contrib.auth.backends.ModelBackend')
+        return render(request, '1_main.html')
     return render (request, 'registration/login.html')
 
 
@@ -45,6 +49,11 @@ def create(request):
         'other_form':other_form
         })    
 
+from .ocr import toefl_ocr
+def create_OCR(request):
+    newdoc = toefl_ocr(request)
+    newdoc.save()
+    return redirect('create')
 
 def resume(request, user_pk):
     if request.method == 'GET':
@@ -94,7 +103,7 @@ def detail_paper(request, user_pk, paper_pk):
 @login_required(login_url='/registration/login')
 def detail_other(request, user_pk, other_pk):
     other = Other.objects.get(pk = other_pk)
-    return render(request, '4_detail_paper.html', {'other' : other  })
+    return render(request, '4_detail_other.html', {'other' : other})
 
 @login_required(login_url='/registration/login')
 def update_license(request, user_pk, license_pk):
@@ -167,23 +176,33 @@ def update_other(request, user_pk, other_pk):
 
 @login_required(login_url='/registration/login')
 def delete_license(request, user_pk, license_pk):
-    pass
+    license = License.objects.get(pk = license_pk)
+    license.delete()
+    return redirect('resume', user_pk)
 
 @login_required(login_url='/registration/login')
 def delete_intern(request, user_pk, intern_pk):
-    pass
+    intern = Intern.objects.get(pk = intern_pk)
+    intern.delete()
+    return redirect('resume', user_pk)
 
 @login_required(login_url='/registration/login')
 def delete_club(request, user_pk, club_pk):
-    pass
+    club = Club.objects.get(pk = club_pk)
+    club.delete()
+    return redirect('resume', user_pk)
 
 @login_required(login_url='/registration/login')
 def delete_paper(request, user_pk, paper_pk):
-    pass
+    paper = Paper.objects.get(pk = paper_pk)
+    paper.delete()
+    return redirect('resume', user_pk)
 
 @login_required(login_url='/registration/login')
 def delete_other(request, user_pk, other_pk):
-    pass
+    other = Other.objects.get(pk = other_pk)
+    other.delete()
+    return redirect('resume', user_pk)
 
 @login_required(login_url='/registration/login')
 def lookup(request):
