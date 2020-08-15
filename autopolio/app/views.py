@@ -226,6 +226,7 @@ def signup(request):
         user.autouser.major = request.POST['major']
         user.autouser.occupation = request.POST['occupation']
         user.save()
+        auth.login(request,user)
         
 
         return redirect('main')
@@ -239,15 +240,10 @@ def logout(request):
     return redirect('login')
 
 def lookup(request):
-    my_occupation=user.AutoUser.occupation
-    filtered_users=Autouser.objects.filter(occupation=my_occupation)
-    return render(request, 'templates/7_lookup.html',{'filtered_users':filtered_users})
+    user=request.user
+    my_occupation=user.autouser.occupation
+    filtered_users=AutoUser.objects.filter(occupation=my_occupation).exclude(user=user)
+    return render(request, '7_lookup.html',{'filtered_users':filtered_users})
 
-class Follow(models.Model):
-    follow_to = models.ForeignKey(Profile, related_name = 'follow_from', on_delete=models.CASCADE)
-    follow_from = models.ForeignKey(Profile, related_name = 'follow_to', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '{} follows {}'.format(self.follow_from, self.follow_to)
 def mypage(request):
     pass

@@ -3,16 +3,15 @@
         <div class="resumeBox">
             <div class="resume"> {{filtered_user.name }}
                 <h3> 좋아요 수: {{like_users.count}} </h3>
-                <a href="/{{filtered_user.user.id}}/like">좋아요</a>
                 <div class="licenseBox">
                     <h1> 자격증 목록 </h1>
-                    {% for licesne in filered_user.license_set.all%}
+                    {% for licesne in filtered_user.license_set.all%}
                         {{license.title }}
                     {% endfor %}
                 </div>
                 <div class="clubBox">
                     <h1> 동아리 목록 </h1>
-                    {% for club in filered_user.club_set.all%}
+                    {% for club in filtered_user.club_set.all%}
                         {{club.title }}
                     {% endfor %}
                 </div>
@@ -38,17 +37,17 @@
         </div>
     {% else %}
         <div class="resumeBox">
-            <div class="resume"> *** 님의 정보입니다.
+            <div class="resume"> {{filtered_user.name}} 님의 정보입니다.
                 <h3> 좋아요 수: {{like_users.count}} </h3>
                 <div class="licenseBox">
                     <h1> 자격증 목록 </h1>
-                    {% for licesne in filered_user.license_set.all%}
+                    {% for licesne in filtered_user.license_set.all%}
                         {{license.title }}
                     {% endfor %}
                 </div>
                 <div class="clubBox">
                     <h1> 동아리 목록 </h1>
-                    {% for club in filered_user.club_set.all%}
+                    {% for club in filtered_user.club_set.all%}
                         {{club.title }}
                     {% endfor %}
                 </div>
