@@ -1,5 +1,10 @@
 from django import forms
-from .models import License, Intern, Club, Paper, Other
+from .models import License, Intern, Club, Paper, Other, AutoUser
+
+class AutoUserForm(forms.ModelForm):
+    class Meta:
+        model = AutoUser
+        fields = ['profile']
 
 class LicenseForm(forms.ModelForm):
     class Meta:

@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.fields import (
     DateField, DateTimeField, DurationField, Field, IntegerField, TimeField,
 )
-from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -12,12 +12,12 @@ from django.dispatch import receiver
 class AutoUser(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.TextField(null=True)
-    birth = models.DateField(null=True)
+    date = models.DateField(null=True)
     high_school = models.CharField(max_length = 30, null = True, blank = True, default = '고등학교를 입력하세요')
     university = models.CharField(max_length = 30, null = True, blank = True, default = '대학교를 입력하세요')
     class_year = models.IntegerField(null=True)
     major = models.TextField(null = True)
-    profile = models.ImageField(null=True, blank=True)
+    profile = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     occupation=models.TextField(null = True)
 
     def __str__(self):
