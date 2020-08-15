@@ -1,0 +1,30 @@
+body {
+    font-size: 25px;
+    font-weight: regular;
+    
+}
+
+p {
+    font-size: 20px;
+    align-items: center;
+}
+
+.login_img {
+    height: 300px;
+    width: 300px;
+}
+
+.big_box {
+    justify-content: space-around;
+    align-content: center;
+    display: flex;
+
+    
+}
+.login_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
