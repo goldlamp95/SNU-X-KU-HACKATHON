@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import *
+from .models import AutoUser,Intern, License, Club, Paper, Other
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -122,6 +122,9 @@ def lookup(request):
 def blurredlist(request, user_pk):
     pass
 
+@login_required(login_url='/registration/login')
+def mypage(request):
+    pass
 
 def signup(request):
     if request.method == "POST":

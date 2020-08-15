@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.fields import (
     DateField, DateTimeField, DurationField, Field, IntegerField, TimeField,
 )
+from django.db.models.signals import post_save 
+from django.dispatch import receiver  
 # Create your models here.
 
 
@@ -92,3 +94,4 @@ class Other(models.Model):
     upload_file = models.FileField(upload_to='documents/%Y/%m/%d/')
     def __str__(self):
         return self.title
+
