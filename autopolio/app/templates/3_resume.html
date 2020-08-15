@@ -22,7 +22,8 @@
             <span>License</span>
             {% for license in licenses %}
             <div class="license_each">
-                <div><a href="{%url 'detail_license' user.pk license.pk %}">{{license.title}}</a></div>
+                <div><a href="{%url 'detail_license' user.pk license.pk %}"> {{license.title}}</a></div>
+                <br>
                 <div>{{license.score}}</div>
                 <div>{{license.date}}</div>
             </div>
@@ -47,8 +48,7 @@
             <div>
                 <div><a href="{% url 'detail_club' user.pk club.pk %}">{{club.title}}</a></div>
                 <div>{{club.role}}</div>
-                <div>{{club.start_date}}</div>
-                <div>{{club.end_date}}</div>
+                <div>{{club.start_date}} - {{club.end_date}}</div>
             </div>
             {% endfor %}
             

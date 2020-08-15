@@ -1,0 +1,13 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 100px;
+    margin-left: 640px;
+    width: 300px;
+}
+
+p {
+    font-weight: bold;
+    font-size: 30px;
+}

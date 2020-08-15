@@ -1,6 +1,6 @@
 body {
     background-color: #ffffff;
-    color: rgb(127,127,127);
+    
     
 }
 
@@ -15,6 +15,7 @@ body {
 .resume_heading {
     font-size: 2rem;
     font-weight: bolder;
+
 }
 .resume_top {
     font-size: 1.3rem;
@@ -87,4 +88,11 @@ span {
     background-color: #f5f5f5;
     margin-bottom: 4%;
     border-radius:10px;
+}
+
+a{
+    text-decoration:none;
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
 }
