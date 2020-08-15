@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>자격증</div>
+{% for license in licenses %}
+<div>
+    <div>{{license.title}}</div>
+    <div>{{license.score}}</div>
+    <div>{{license.date}}</div>
+</div>
+{% endfor %}
+
+<div>경력사항</div>
+{% for intern in interns %}
+<div>
+    <div>{{inter.title}}</div>
+    <div>f '{{intern.start_date}} - {{intern.end_date}}'</div>
+</div>
+{% endfor %}    
+
+
+<div>동아리/대외활동</div>
+{% for club in clubs  %}
+<div>
+    <div><a href="{% url 'detail_club' club_pk %}">{{club.title}}</a></div>
+    <div>{{club.role}}</div>
+    <div>{{club.start_date}}</div>
+    <div>{{club.end_date}}</div>
+</div>
+{% endfor %}
+
+<div>공모전/논문/프로젝트</div>
+{% for paper in papers %}
+<div>
+    <div>{{paper.title}}</div>
+    <div>{{paper.date}}</div>
+</div>
+{% endfor %}
+
+<div>그 외 활동</div>
+{% for other in others %}
+<div>
+    <div>{{other.title}}</div>
+    <div>{{other.summary}}</div>
+</div>
+{% endfor %}
+
+
+
+
+{% endblock content %}

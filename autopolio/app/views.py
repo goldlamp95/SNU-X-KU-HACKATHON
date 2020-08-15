@@ -25,9 +25,24 @@ def main(request):
 def create(request):
     pass
 
-@login_required(login_url='/registration/login')
+
 def resume(request, user_pk):
-    pass
+    if request.method == 'GET':
+        licenses = License.objects.filter(pk=user_pk)
+        interns = Intern.objects.filter(pk=user_pk)
+        clubs = Club.objects.filter(pk=user_pk)
+        papers = Paper.objects.filter(pk=user_pk)
+        others = Other.objects.filter(pk=user_pk)
+
+        resumes = {
+            'licenses':licenses,
+            'interns': interns,
+            'clubs': clubs,
+            'papers': papers,
+            'others': others
+        }
+        return render(request, '3_resume.html', resumes)
+
 
 @login_required(login_url='/registration/login')
 def detail_license(request, user_pk, license_pk):
