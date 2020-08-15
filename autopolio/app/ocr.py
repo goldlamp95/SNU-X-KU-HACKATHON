@@ -31,21 +31,51 @@ def toefl_ocr(request):
   payload = {'message': json.dumps(request_json).encode('UTF-8')}
   files = [
     # ('file', open(image_file,'rb'))
-    image_file
+    ('file', image_file)
   ]
   headers = {
     'X-OCR-SECRET': secret_key
   }
 
   response = requests.request("POST", api_url, headers=headers, data = payload, files = files)
-
   full_text = response.text.encode('utf8')
-
   result = json.loads(full_text)
+  result_data = result['images'][0]['fields']
 
-  print('--------')
+  for i in result_data:
+    print(i['inferText'])
+    if i['name']=='Test_date':
+      Test_date = i['inferText']
+    if i['name']=='Total_score':
+      Total_score = i['inferText']
+    if i['name']=='Test_name':
+      Test_name = i['inferText']
 
-  a = result['images'][0]['fields']
+  # Test_date 수정
+  month_dic = {
+    "Jan": "01",
+    "Feb": "02",
+    "Mar": "03",
+    "Apr": "04",
+    "May": "05",
+    "Jun": "06",
+    "Jul": "07",
+    "Aug": "08",
+    "Sep": "09",
+    "Oct": "10",
+    "Nov": "11",
+    "Dec": "12",
+  }
+  DMY = Test_date.split(' ')
+  
+  YMD = DMY[2]+'-'+month_dic[DMY[1]]+'-'+DMY[0]
 
-  for i in a:
-    print(i['name'] +'  '  +  i['inferText'])
+  newdoc = License(
+    user = request.user,
+    title= Test_name,
+    score = Total_score,
+    date_achieved = YMD,
+    upload_file=image_file
+  )
+
+  return newdoc

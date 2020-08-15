@@ -47,8 +47,9 @@ def create(request):
 
 from .ocr import toefl_ocr
 def create_OCR(request):
-    toefl_ocr(request)
-    return redirect('/main/')
+    newdoc = toefl_ocr(request)
+    newdoc.save()
+    return redirect('create')
 
 def resume(request, user_pk):
     if request.method == 'GET':
