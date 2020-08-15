@@ -142,7 +142,8 @@ def logout(request):
     auth.logout(request)
     return redirect('login')
 
-@login_required(login_url='/registration/login')
-def mypage(request):
-    auth.logout(request)
-    return redirect('login')
+def lookup(request):
+    my_occupation=user.AutoUser.occupation
+    filtered_users=Autouser.objects.filter(occupation=my_occupation)
+    return render(request, 'templates/7_lookup.html',{'filtered_users':filtered_users})
+

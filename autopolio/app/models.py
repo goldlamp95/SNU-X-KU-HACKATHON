@@ -9,16 +9,26 @@ from django.db.models.fields import (
 
 class AutoUser(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.TextField()
-    email = models.TextField()
-    birth = models.DateField()
+    name = models.TextField(null=True)
+    birth = models.DateField(null=True)
     high_school = models.CharField(max_length = 30, null = True, blank = True, default = '고등학교를 입력하세요')
     university = models.CharField(max_length = 30, null = True, blank = True, default = '대학교를 입력하세요')
     major = models.TextField(null = True)
     profile = models.ImageField(null=True, blank=True)
+    occupation=models.TextField(null = True)
 
     def __str__(self):
         return self.name
+    
+    @receiver(post_save, sender=User)
+    def create_user_AutoUser(sender, instance, created, **kwargs):  
+        if created:
+            AutoUser.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_AutoUser(sender, instance, **kwargs):  
+        instance.autouser.save()
+
 
 class License(models.Model):
     category = models.CharField(max_length=10, default='license')
