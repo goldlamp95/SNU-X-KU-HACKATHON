@@ -56,7 +56,7 @@ class Intern(models.Model):
     # upload_image = models.ImageField(null=True, blank=True)
     upload_file = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     category = models.CharField(max_length=10, default='intern', blank=True, null=False)    
-    
+
     def __str__(self):
         return self.title
 
@@ -83,7 +83,6 @@ class Paper(models.Model):
     upload_file = models.FileField(upload_to='documents/%Y/%m/%d/')
     category = models.CharField(max_length=10, default='paper', blank=True, null=False)
 
-
     def __str__(self):
         return self.title
 
@@ -95,5 +94,6 @@ class Other(models.Model):
     date_added = models.DateField(auto_now_add=True)
     upload_file = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     category = models.CharField(max_length=10, default='other', blank=True, null=False)
+
     def __str__(self):
         return self.title

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method = 'POST'>
+    {% csrf_token %}
+    <input type="text" name="title" placeholder = 'paper을 입력하세요'>
+    <input type="text" name="summary" placeholder = 'paper 에 대해서 입력하세요'>
+    <input type="file" name="upload_file">
+    <button type = "submit">수정하기</button>
+</form>
+{% endblock content %}
