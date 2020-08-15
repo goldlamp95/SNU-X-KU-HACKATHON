@@ -25,7 +25,7 @@
 <div>동아리/대외활동</div>
 {% for club in clubs  %}
 <div>
-    <div><a href="{% url 'detail_intern' user.pk club.pk %}">{{club.title}}</a></div>
+    <div><a href="{% url 'detail_club' user.pk club.pk %}">{{club.title}}</a></div>
     <div>{{club.role}}</div>
     <div>{{club.start_date}}</div>
     <div>{{club.end_date}}</div>
@@ -35,7 +35,7 @@
 <div>공모전/논문/프로젝트</div>
 {% for paper in papers %}
 <div>
-    <div><a href="{% url 'detail_intern' user.pk paper.pk %}">{{paper.title}}</a></div>
+    <div><a href="{% url 'detail_paper' user.pk paper.pk %}">{{paper.title}}</a></div>
     <div>{{paper.date}}</div>
 </div>
 {% endfor %}

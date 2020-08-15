@@ -46,59 +46,103 @@ def resume(request, user_pk):
         return render(request, '3_resume.html', resumes)
 
 
-@login_required(login_url='/registration/login')
+ 
 def detail_license(request, user_pk, license_pk):
     license = License.objects.get(pk = license_pk)
+    return render(request, '4_detail_license.html', {'license': license})
 
-    if request.method == 'POST':
-        License.objects.filter(pk = license_pk).update(
-            title = request.POST['title'],
-            score = request.POST['score'],
-            date_added = request.POST['date_added'],
-            date_achieved = request.POST['date_achieved'],
-            uploaded_file = request.POST['upload_file']
-
-        )
-        return redirect('resume', user_pk)
-    return render(request, '4_detail_license.html')
         
 
 
 @login_required(login_url='/registration/login')
 def detail_intern(request, user_pk, intern_pk):
-    pass
+    intern = Intern.objects.get(pk = intern_pk)
+    return render(request, '4_detail_intern.html', {'intern' : intern })
 
 @login_required(login_url='/registration/login')
 def detail_club(request, user_pk, club_pk):
-    pass
+    club = Club.objects.get(pk = club_pk)
+    return render(request, '4_detail_club.html', {'club' : club })
 
 @login_required(login_url='/registration/login')
 def detail_paper(request, user_pk, paper_pk):
-    pass
+    paper = Paper.objects.get(pk = paper_pk)
+    return render(request, '4_detail_paper.html', {'paper' : paper })
+
 
 @login_required(login_url='/registration/login')
 def detail_other(request, user_pk, other_pk):
-    pass
+    other = Other.objects.get(pk = other_pk)
+    return render(request, '4_detail_paper.html', {'other' : other  })
 
 @login_required(login_url='/registration/login')
 def update_license(request, user_pk, license_pk):
-    pass
+    if request.method == 'POST':
+        License.objects.filter(pk = license_pk).update(
+            title = request.POST['title'],
+            score = request.POST['score'],
+            # date_added = request.POST['date_added'],
+            date_achieved = request.POST['date_achieved'],
+            upload_file = request.POST['upload_file']
+
+        )
+        return redirect('resume', user_pk)
+    return render(request, '5_update_license.html')
 
 @login_required(login_url='/registration/login')
 def update_intern(request, user_pk, intern_pk):
-    pass
+    if request.method == 'POST':
+        Intern.objects.filter(pk = intern_pk).update(
+            title = request.POST['title'],
+            summary = request.POST['summary'],
+            # date_added = request.POST['date_added'],
+            start_date = request.POST['start_date'],
+            end_date = request.POST['end_date'],
+            upload_file = request.POST['upload_file']
+
+        )
+        return redirect('resume', user_pk)
+    return render(request, '5_update_intern.html')
 
 @login_required(login_url='/registration/login')
 def update_club(request, user_pk, club_pk):
-    pass
+    if request.method == 'POST':
+        Club.objects.filter(pk = club_pk).update(
+            title = request.POST['title'],
+            summary = request.POST['summary'],
+            role = request.POST['role'],
+            start_date = request.POST['start_date'],
+            end_date = request.POST['end_date'],
+            upload_file = request.POST['upload_file']
+
+        )
+        return redirect('resume', user_pk)
+    return render(request, '5_update_club.html')
 
 @login_required(login_url='/registration/login')
 def update_paper(request, user_pk, paper_pk):
-    pass
+    if request.method == 'POST':
+        Paper.objects.filter(pk = paper_pk).update(
+            title = request.POST['title'],
+            summary = request.POST['summary'],
+            upload_file = request.POST['upload_file']
+
+        )
+        return redirect('resume', user_pk)
+    return render(request, '5_update_paper.html')
+
 
 @login_required(login_url='/registration/login')
 def update_other(request, user_pk, other_pk):
-    pass
+    if request.method == 'POST':
+          Other.objects.filter(pk = other_pk).update(
+              title = request.POST['title'],
+              summary = request.POST['summary'],
+              upload_file = request.POST['upload_file']
+
+          )
+          return redirect('resume', user_pk)
+    return render(request, '5_update_other.html')
 
 @login_required(login_url='/registration/login')
 def delete_license(request, user_pk, license_pk):
