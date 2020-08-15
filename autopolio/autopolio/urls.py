@@ -57,5 +57,5 @@ urlpatterns = [
     # authentication
     path('registration/signup', views.signup, name="signup"),
     path('registration/logout', views.logout, name="logout"),
-    path('registration/mypage', views.mypage, name="mypage"),
+    path('registration/mypage/', views.mypage, name="mypage"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
