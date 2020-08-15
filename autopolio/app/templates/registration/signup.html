@@ -7,13 +7,13 @@
         <img id="profile_photo" alt="" src="../static/signup.png">
     </div>
     <div class="signup_form">
-        <h1>환영합니다</h1>
+        <h1 style="color: #D25430;">환영합니다</h1>
             <form method="POST" action={% url 'signup' %} enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="signup_form_main">
                     <p>아이디</p> <input type="text" name="username" placeholder="아이디를 입력해주세요" required>
-                    <p>비밀번호</p> <input type="text" name="password" placeholder="비밀번호를 입력해주세요" required>
-                    <p>비밀번호 확인</p> <input type="text" name="password_confirm" placeholder="비밀번호를 한번 더 입력해주세요" required>
+                    <p>비밀번호</p> <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+                    <p>비밀번호 확인</p> <input type="password" name="password_confirm" placeholder="비밀번호를 한번 더 입력해주세요" required>
                     <p>이름</p> <input type="text" name="name" placeholder="이름을 입력해주세요" required>
                     <p>생년월일</p> <input type="date" name="date">
                     <p>이메일</p> <input type="text" name="email" placeholder="예: Poly@naver.com" required>

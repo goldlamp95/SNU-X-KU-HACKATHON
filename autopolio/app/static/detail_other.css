@@ -1,0 +1,36 @@
+.other_entire {
+    display: flex;
+    height: 300px;
+    border: 6px solid #D25430;
+    width: 50%;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 25px;
+    color: rgb(127,127,127);
+}
+.other_image {
+    margin-top: 10%;
+    padding-left: 5%;
+}
+.other_body {
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.other_title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #D25430;
+}
+
+.other_summary {
+    font-size: 1.3rem;
+}
+
+.edit_tools {
+    display: flex;
+    width: 110%;
+    justify-content: space-between;
+}

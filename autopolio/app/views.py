@@ -221,9 +221,6 @@ def lookup(request):
 def blurredlist(request, user_pk):
     pass
 
-@login_required(login_url='/registration/login')
-def mypage(request, user_pk):
-    pass
 
 def signup(request):
     if request.method == "POST":
@@ -275,17 +272,24 @@ def lookup(request):
 
     return render(request, '7_lookup.html',{'filtered_users':filtered_users,'clubs':clubs,'papers':papers,'interns':interns,'others':others,'licenses':licenses,'follow_list':follow_list})
 
-
+@login_required(login_url='/registration/login')
 def mypage(request):
     user=request.user
     user_id=user.id
     if request.method=='POST':
+        user1 = User.objects.filter(id=user_id)[0]
         User.objects.filter(id=user_id).update(username=request.POST['username'], email=request.POST['email'])
-        AutoUser.objects.filter(user=user).update(university=request.POST['university'], major=request.POST['major'], occupation=request.POST['occupation'])
+        user1.autouser.university = request.POST['university']
+        user1.autouser.major = request.POST['major']
+        user1.autouser.occupation = request.POST['occupation']
+        user1.autouser.profile = request.FILES['profile']
+        user1.save()
         user.refresh_from_db()
         return redirect('main')
     else:
-        return render(request, 'registration/mypage.html')
+        profile = AutoUser.objects.filter(user_id = user_id)
+        return render(request, 'registration/mypage.html', {'profile' : profile.values()[0]['profile']})
+
 
 def follow(request, user_pk):
     # print('follow')
