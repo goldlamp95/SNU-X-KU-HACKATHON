@@ -63,16 +63,25 @@ def resume(request, user_pk):
         clubs = Club.objects.filter(user__id=user_pk)
         papers = Paper.objects.filter(user__id=user_pk)
         others = Other.objects.filter(user__id=user_pk)
+        
 
         resumes = {
+
+            'profile_name' : profile.values()[0]['name'],
+            'profile_date' : profile.values()[0]['date'],
+            'profile_high_school' : profile.values()[0]['high_school'],
+            'profile_university' : profile.values()[0]['university'],
+            'profile_class_year' : profile.values()[0]['class_year'],
+            'profile_occupation' : profile.values()[0]['occupation'],
             'profile' : profile.values()[0]['profile'],
             'licenses':licenses,
             'interns': interns,
             'clubs': clubs,
             'papers': papers,
             'others': others
+            
         }
-        print("여기",profile.values()[0]['profile'])
+        
         return render(request, '3_resume.html', resumes)
 
 

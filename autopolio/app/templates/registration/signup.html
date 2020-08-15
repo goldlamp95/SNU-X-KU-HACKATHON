@@ -4,39 +4,40 @@
 <link rel="stylesheet" href="{% static 'signup.css' %}" />
 <div class="signup_main">
     <div class="signup_image">
-        <img src="../static/signup.png">
+        <img id="profile_photo" alt="" src="../static/signup.png">
     </div>
     <div class="signup_form">
         <h1>환영합니다</h1>
-        <form method="POST" action={% url 'signup' %} enctype="multipart/form-data">
-            {% csrf_token %}
-            아이디 <input type="text" name="username" placeholder="아이디를 입력해주세요" required></br>
-            비밀번호 <input type="text" name="password" placeholder="비밀번호를 입력해주세요" required></br>
-            비밀번호 확인 <input type="text" name="password_confirm" placeholder="비밀번호를 한번 더 입력해주세요" required></br>
-            이름 <input type="text" name="name" placeholder="이름을 입력해주세요" required></br>
-            생년월일 <input type="date" name="date"></br>
-            이메일 <input type="text" name="email" placeholder="예: Poly@naver.com" required></br>
-            사진 <input type='file' id="upload_file" name="profile"></br>
-            <!-- 사진 {{autouser_form.profile}} -->
-                <img id="photo" name="profile" alt=" " width="250" height="250" /></br>
-            고등학교 <input type="text" name="high_school" placeholder="고등학교를 입력해주세요"></br>
-            대학 <input type="text" name="university" placeholder="대학을 입력해주세요"></br>
-            학과 <input type="text" name="major" placeholder="학과를 입력해주세요"></br>
-            계열 <select id="occupation" name="occupation">
-                <option value="문과">문과</option>
-                <option value="이과">이과</option>
-                <option value="예체능">예체능</option>
-                </select></br>
-
-            <button type="submit">JOIN US</button>
+            <form method="POST" action={% url 'signup' %} enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="signup_form_main">
+                    <p>아이디</p> <input type="text" name="username" placeholder="아이디를 입력해주세요" required>
+                    <p>비밀번호</p> <input type="text" name="password" placeholder="비밀번호를 입력해주세요" required>
+                    <p>비밀번호 확인</p> <input type="text" name="password_confirm" placeholder="비밀번호를 한번 더 입력해주세요" required>
+                    <p>이름</p> <input type="text" name="name" placeholder="이름을 입력해주세요" required>
+                    <p>생년월일</p> <input type="date" name="date">
+                    <p>이메일</p> <input type="text" name="email" placeholder="예: Poly@naver.com" required>
+                    <p>사진</p> <input type='file' id="upload_file" name="profile">
+                    <p>고등학교</p> <input type="text" name="high_school" placeholder="고등학교를 입력해주세요">
+                    <p>대학</p> <input type="text" name="university" placeholder="대학을 입력해주세요">
+                    <p>학과</p> <input type="text" name="major" placeholder="학과를 입력해주세요">
+                    <p>계열</p> <select id="occupation" name="occupation">
+                        <option value="문과">문과</option>
+                        <option value="이과">이과</option>
+                        <option value="예체능">예체능</option>
+                        </select>
+                </div>
+                <div class="signup_form_button">
+                    <button type="submit" style="display: flex; align-items:center;"><p class="start">오토폴리오 시작하기<p></button>
+                <div>
 
                 
-            <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+            <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
             <script type="text/javascript">
 
                 $(function() {
                     $("#upload_file").on('change', function(){
-                        
+                        console.log(1)
                         readURL(this);
                     });
                 });
@@ -45,7 +46,7 @@
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
-                            $('#photo').attr('src', e.target.result);
+                            $('#profile_photo').attr('src', e.target.result);
                         }
                         reader.readAsDataURL(input.files[0]);
                     }
