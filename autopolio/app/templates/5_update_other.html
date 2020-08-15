@@ -1,10 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% block title %}{% endblock title %}{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static '5_update_other.css' %}"> {% endblock css %}
 {% block content %}
 <form method = 'POST'>
     {% csrf_token %}
-    <input type="text" name="title" placeholder = 'other 입력하세요'>
-    <input type="text" name="summary" placeholder = 'other 에 대해서 입력하세요'>
-    <input type="file" name="upload_file">
-    <button type = "submit">수정하기</button>
+    <p align="center">피드 업데이트</p>
+    <div class="box">
+        <input type="text" name="title" placeholder = 'other 입력하세요'>
+        <input type="text" name="summary" placeholder = 'other 에 대해서 입력하세요'>
+        <input type="file" name="upload_file">
+        <button type = "submit">수정하기</button>
+    </div>
 </form>
 {% endblock content %}

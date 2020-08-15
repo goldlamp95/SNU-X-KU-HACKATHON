@@ -1,71 +1,181 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'create.css' %}" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<div class="container">
+    <img src="../static/create_image/license.png">
+    <div class="content">
+        <h2 class="red">License</h1>
+            <h3 class="grey">이미지로 입력하기</h3>
+            <form action="/create_OCR/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="image_upload">
+                    <div class="input">
+                        <p class="small input_direction grey">자격증 이미지</p>
+                        <input class="file_input" type="file" name="Eng_score" />
+                    </div>
+                    <button type="submit" value="제출" id="image_submit">이미지 입력</button>
+                </div>
+            </form>
+            <h3 class="grey">직접 입력하기</h3>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ license_form.category.as_hidden }}
 
-<body>
-    <p>License</p>
-    <form action="/create_OCR/" method="post" enctype="multipart/form-data">
-        <h3>이미지로 업로드하기</h3></br>
-        {% csrf_token %}
-        <input type="file" name="Eng_score"/>
-        <input type="submit"/>
-    </form>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ license_form.category.as_hidden }}
-        <p>제목{{ license_form.title}}</p>
-        <p>점수{{ license_form.score }}</p>
-        <p>취득일자{{ license_form.date_achieved }}</p>
-        <p>파일업로드{{ license_form.upload_file }}</p>
-        <button type="submit" value="제출">등록하기</button>
-    </form>
-    <p>Intern</p>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ intern_form.category.as_hidden }}
-        <p>제목{{ intern_form.title }}</p>
-        <p>요약{{ intern_form.summary }}</p>
-        <p>시작일자{{ intern_form.start_date }}</p>
-        <p>종료일자{{ intern_form.end_date }}</p>
-        <p>파일업로드{{ intern_form.upload_file }}</p>
-        <button type="submit" value="제출">등록하기</button>
-    </form>
-    <p>Club</p>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ club_form.category.as_hidden }}
-        <p>제목{{ club_form.title }}</p>
-        <p>역할{{ club_form.role }}</p>
-        <p>요약{{ club_form.summary }}</p>
-        <p>시작일자{{ club_form.start_date }}</p>
-        <p>종료일자{{ club_form.end_date }}</p>
-        <p>파일업로드{{ club_form.upload_file }}</p>
-        <button type="submit" value="제출">등록하기</button>
-    </form>
-    <p>Paper</p>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ paper_form.category.as_hidden }}
-        <p>제목{{ paper_form.title}}</p>
-        <p>요약{{ paper_form.summary }}</p>
-        <p>파일업로드{{ paper_form.upload_file }}</p>
-        <button type="submit" value="제출">등록하기</button>
-    </form>
-    <p>Other</p>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ other_form.category.as_hidden }}
-        <p>제목{{ other_form.title}}</p>
-        <p>요약{{ other_form.summary }}</p>
-        <p>파일업로드{{ other_form.upload_file }}</p>
-        <button type="submit" value="제출">등록하기</button>
-    </form>
+                <div class="input">
+                    <p class="small input_direction grey">제목</p>
+                    <p>{{ license_form.title}}</p>
+                </div>
+                <div class="input">
+                    <p class="small input_direction grey">점수</p>
+                    <p>{{ license_form.score }}</p>
+                </div>
+                <div class="input">
+                    <p class="small input_direction grey">취득일자</p>
+                    <p>{{ license_form.date_achieved }}</p>
+                </div>
+                <div class="input">
+                    <p class="small input_direction grey">파일업로드</p>
+                    <p class="fileupload">{{ license_form.upload_file }}</p>
+                </div>
 
-</body>
+                <button type="submit" value="제출">등록하기</button>
+            </form>
+    </div>
+</div>
 
-</html>
+<div class="container">
+    <img src="../static/create_image/intern.png">
+    <div class="content">
+        <h2 class="red">Intern</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ intern_form.category.as_hidden }}
+            <div class="input">
+                <p class="small input_direction grey">제목</p>
+                <p>{{ intern_form.title }}</p>
+            </div>
+            <div class="input bigger">
+                <p class="small input_direction grey">요약</p>
+                <p>{{ intern_form.summary }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">시작일자</p>
+                <p>{{ intern_form.start_date }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">종료일자</p>
+                <p>{{ intern_form.end_date }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">파일업로드</p>
+                <p class="fileupload">{{ intern_form.upload_file }}</p>
+            </div>
+            <button type="submit" value="제출">등록하기</button>
+        </form>
+    </div>
+
+</div>
+
+<div class="container">
+    <img src="../static/create_image/club.png">
+    <div class="content">
+        <h2 class="red">Club</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ club_form.category.as_hidden }}
+            <div class="input">
+                <p class="small input_direction grey">제목</p>
+                <p>{{ club_form.title }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">역할</p>
+                <p>{{ club_form.role }}</p>
+            </div>
+            <div class="input bigger">
+                <p class="small input_direction grey">요약</p>
+                <p>{{ club_form.summary }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">시작일자</p>
+                <p>{{ club_form.start_date }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">종료일자</p>
+                <p>{{ club_form.end_date }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">파일업로드</p>
+                <p class="fileupload">{{ club_form.upload_file }}</p>
+            </div>
+            <button type="submit" value="제출">등록하기</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <img src="../static/create_image/paper.png">
+    <div class="content">
+        <h2 class="red">Paper</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ paper_form.category.as_hidden }}
+            <div class="input">
+                <p class="small input_direction grey">제목</p>
+                <p>{{ paper_form.title}}</p>
+            </div>
+            <div class="input bigger">
+                <p class="small input_direction grey">요약</p>
+                <p>{{ paper_form.summary }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">파일업로드</p>
+                <p class="fileupload">{{ paper_form.upload_file }}</p>
+            </div>
+            <button type="submit" value="제출">등록하기</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <img src="../static/create_image/other.png">
+    <div class="content">
+        <h2 class="red">Other</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ other_form.category.as_hidden }}
+            <div class="input">
+                <p class="small input_direction grey">제목</p>
+                <p>{{ other_form.title}}</p>
+            </div>
+            <div class="input bigger">
+                <p class="small input_direction grey">요약</p>
+                <p>{{ other_form.summary }}</p>
+            </div>
+            <div class="input">
+                <p class="small input_direction grey">파일업로드</p>
+                <!-- <div class="new_Btn">SelectPicture</div> -->
+                <p class="fileupload">{{ other_form.upload_file }}</p>
+            </div>
+            <button type="submit" value="제출">등록하기</button>
+        </form>
+    </div>
+</div>
+
+<div class="confirm_button">
+    <a href="{% url 'resume' user.pk %}">내 포트폴리오 확인하기</a>
+</div>
+
+
+<!-- <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    $('.new_Btn').on("click", function () {
+        $('.fileupload').children().click();
+    });
+    // const upload = () => {
+    //     alert('hi')
+    // }
+</script> -->
+
+{% endblock content %}
