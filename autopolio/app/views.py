@@ -17,7 +17,7 @@ def login(request):
         return redirect('main')
     return render (request, 'registration/login.html')
 
-@login_required(login_url='/registration/login')
+
 def main(request):
     return render(request, '1_main.html')
 
@@ -48,7 +48,7 @@ def create(request):
 
 def resume(request, user_pk):
     if request.method == 'GET':
-        profile = AutoUser.profile
+        profile = AutoUser.objects.filter(user_id = user_pk)
         licenses = License.objects.filter(user__id=user_pk)
         interns = Intern.objects.filter(user__id=user_pk)
         clubs = Club.objects.filter(user__id=user_pk)
@@ -56,13 +56,14 @@ def resume(request, user_pk):
         others = Other.objects.filter(user__id=user_pk)
 
         resumes = {
-            'profile' : profile,
+            'profile' : profile.values()[0]['profile'],
             'licenses':licenses,
             'interns': interns,
             'clubs': clubs,
             'papers': papers,
             'others': others
         }
+        print("여기",profile.values()[0]['profile'])
         return render(request, '3_resume.html', resumes)
 
 
@@ -192,6 +193,10 @@ def lookup(request):
 def blurredlist(request, user_pk):
     pass
 
+@login_required(login_url='/registration/login')
+def mypage(request, user_pk):
+    pass
+
 
 def signup(request):
     if request.method == "POST":
@@ -213,6 +218,7 @@ def signup(request):
         user.autouser.major = request.POST['major']
         user.autouser.occupation = request.POST['occupation']
         user.save()
+
         auth.login(request, user)
 
         return redirect('main')
@@ -230,5 +236,14 @@ def lookup(request):
     filtered_users=Autouser.objects.filter(occupation=my_occupation)
     return render(request, 'templates/7_lookup.html',{'filtered_users':filtered_users})
 
+
 def mypage(request):
-    pass
+    user=request.user
+    user_id=user.id
+    if request.method=='POST':
+        User.objects.filter(id=user_id).update(username=request.POST['username'], email=request.POST['email'])
+        AutoUser.objects.filter(user=user).update(university=request.POST['university'], major=request.POST['major'], occupation=request.POST['occupation'])
+        user.refresh_from_db()
+        return redirect('main')
+    else:
+        return render(request, 'registration/mypage.html')
