@@ -9,6 +9,12 @@
 
 <body>
     <p>License</p>
+    <form action="/create_OCR/" method="post" enctype="multipart/form-data">
+        <h3>이미지로 업로드하기</h3></br>
+        {% csrf_token %}
+        <input type="file" name="Eng_score"/>
+        <input type="submit"/>
+    </form>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ license_form.category.as_hidden }}
@@ -59,76 +65,7 @@
         <p>파일업로드{{ other_form.upload_file }}</p>
         <button type="submit" value="제출">등록하기</button>
     </form>
-    <!-- for check -->
-    {% if license_documents%}
-    <ul>
-        {% for document in license_documents%}
-        <li>{{document.title}}{{document.user}}
-            <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-            {{document.summary}}
-            {{document.date_added}}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No documents</p>
-    {% endif %}
 
-    {% if intern_documents%}
-    <ul>
-        {% for document in intern_documents%}
-        <li>{{document.title}}{{document.user}}
-            <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-            {{document.summary}}
-            {{document.date_added}}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No documents</p>
-    {% endif %}
-
-    {% if club_documents%}
-    <ul>
-        {% for document in club_documents%}
-        <li>{{document.title}}{{document.user}}
-            <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-            {{document.summary}}
-            {{document.date_added}}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No documents</p>
-    {% endif %}
-
-    {% if paper_documents%}
-    <ul>
-        {% for document in license_documents%}
-        <li>{{document.title}}{{document.user}}
-            <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-            {{document.summary}}
-            {{document.date_added}}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No documents</p>
-    {% endif %}
-
-    {% if other_documents%}
-    <ul>
-        {% for document in license_documents%}
-        <li>{{document.title}}{{document.user}}
-            <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-            {{document.summary}}
-            {{document.date_added}}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No documents</p>
-    {% endif %}
 </body>
 
 </html>

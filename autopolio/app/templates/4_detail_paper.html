@@ -9,5 +9,7 @@
 
 {% if request.user==paper.user %}
 <a href="{% url 'update_paper' user.pk paper.pk %}">수정하기</a>
+<a href="{% url 'delete_paper' user.pk paper.pk %}">삭제하기</a>
 {% endif %}
+
 {% endblock content %}
