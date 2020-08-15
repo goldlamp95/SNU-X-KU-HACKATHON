@@ -19,6 +19,7 @@ class AutoUser(models.Model):
     major = models.TextField(null = True)
     profile = models.ImageField(null=True, blank=True)
     occupation=models.TextField(null = True)
+    like_users = models.ManyToManyField('self',blank=True,through='Like')
 
     def __str__(self):
         return self.name
@@ -98,3 +99,6 @@ class Other(models.Model):
     def __str__(self):
         return self.title
 
+class Like(models.Model):
+    user = models.ForeignKey(AutoUser,related_name = 'liked_from', on_delete=models.CASCADE)
+    liked_user = models.ForeignKey(AutoUser, related_name = 'like_to', on_delete=models.CASCADE)

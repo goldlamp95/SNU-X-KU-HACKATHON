@@ -1,4 +1,4 @@
-{% for filtered_user in filtered_users %}
+{% for filtered_user in filtered_users|dictsortreversed:"like_users.count" %}
     <div class="resumeBox">
         <div class="resume"> {{filtered_user.name }}</div>
 
