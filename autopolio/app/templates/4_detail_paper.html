@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div>{{paper.title}}</div>
+    <div>{{paper.summary}}</div>
+    <div>{{paper.upload_file}}</div>
+</div>
+
+<a href="{% url 'update_paper' user.pk paper.pk %}">수정하기</a>
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div>{{license.title}}</div>
+    <div>{{license.score}}</div>
+    <div>{{license.date_achieved}}</div>
+    <div>{{license.date_added}}</div>
+    <div>{{license.upload_file}}</div>
+</div>
+
+<a href="{% url 'update_license' user.pk license.pk %}">수정하기</a>
+<!-- <a href="{% url 'update_license' user.pk license.pk %}">삭제하기</a> -->
+{% endblock content %}

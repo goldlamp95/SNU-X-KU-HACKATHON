@@ -12,12 +12,12 @@ from django.dispatch import receiver
 class AutoUser(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.TextField(null=True)
-    birth = models.DateField(null=True)
+    date = models.DateField(null=True)
     high_school = models.CharField(max_length = 30, null = True, blank = True, default = '고등학교를 입력하세요')
     university = models.CharField(max_length = 30, null = True, blank = True, default = '대학교를 입력하세요')
     class_year = models.IntegerField(null=True)
     major = models.TextField(null = True)
-    profile = models.ImageField(null=True, blank=True)
+    profile = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     occupation=models.TextField(null = True)
     like_users = models.ManyToManyField('self',blank=True,through='Like',symmetrical=False)
     follows = models.ManyToManyField('self',through = 'Follow', blank=True, related_name='followed',symmetrical=False)
@@ -58,7 +58,7 @@ class Intern(models.Model):
     # upload_image = models.ImageField(null=True, blank=True)
     upload_file = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     category = models.CharField(max_length=10, default='intern', blank=True, null=False)    
-    
+
     def __str__(self):
         return self.title
 
@@ -85,7 +85,6 @@ class Paper(models.Model):
     upload_file = models.FileField(upload_to='documents/%Y/%m/%d/')
     category = models.CharField(max_length=10, default='paper', blank=True, null=False)
 
-
     def __str__(self):
         return self.title
 
@@ -97,6 +96,7 @@ class Other(models.Model):
     date_added = models.DateField(auto_now_add=True)
     upload_file = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     category = models.CharField(max_length=10, default='other', blank=True, null=False)
+
     def __str__(self):
         return self.title
 

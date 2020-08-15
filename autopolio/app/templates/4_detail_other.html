@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div>{{other.title}}</div>
+    <div>{{other.summary}}</div>
+    
+    <div>{{other.upload_file}}</div>
+</div>
+
+<a href="{% url 'update_other' user.pk other.pk %}">수정하기</a>
+
+{% endblock content %}
