@@ -129,9 +129,20 @@ def signup(request):
         if len(found_user) > 0:
             error = "User name이 이미 존재합니다"
             return render(request, 'registration/signup.html', {'error':error})
-        new_user = User.objects.create_user(
+        new_user = User.objects.create(
             username = request.POST['username'],
-            password = request.POST['password']
+            password = request.POST['password'],
+            )
+        new_AutoUser = AutoUser.objects.create(
+            user = new_user,
+            name = request.POST['name'],
+            date = request.POST['date'],
+            email = request.POST['email'],
+            profile = request.POST['profile'],
+            high_school = request.POST['high_school'],
+            university = request.POST['university'],
+            major = request.POST['major'],
+            occupation = request.POST['occupation']
         )
         auth.login(request, new_user) 
         return redirect('main')

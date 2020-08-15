@@ -9,13 +9,15 @@ from django.db.models.fields import (
 
 class AutoUser(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.TextField()
-    email = models.TextField()
-    birth = models.DateField()
+    name = models.TextField(null = True)
+    date = models.DateField(null = True)
+    email = models.TextField(null = True)
+    profile = models.ImageField(null=True, blank=True)
     high_school = models.CharField(max_length = 30, null = True, blank = True, default = '고등학교를 입력하세요')
     university = models.CharField(max_length = 30, null = True, blank = True, default = '대학교를 입력하세요')
     major = models.TextField(null = True)
-    profile = models.ImageField(null=True, blank=True)
+    occupation = models.TextField(null = True)
+    
 
     def __str__(self):
         return self.name
