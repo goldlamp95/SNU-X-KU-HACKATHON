@@ -1,5 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% block title %}{% endblock title %}{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'detail_club.css' %}"> {% endblock css %}
+
 {% block content %}
+<<<<<<< HEAD
 <div class="box">
     <div>{{club.title}}</div>
     <div>{{club.summary}}</div>
@@ -12,4 +15,23 @@
     <a href="{% url 'update_club' user.pk club.pk %}">수정하기</a>
     <a href="{% url 'delete_club' user.pk club.pk %}">삭제하기</a>
 {% endif %}
+=======
+<div class="club_entire">
+    <img src="{% static 'create_image/club.png'%}" class="club_image" height= 70%; width= 40%;>
+    <div class="club_body">
+        <div class="club_title">{{club.title}}</div>
+        <div class="club_summary">{{club.summary}}</div>
+        <div class="club_date">활동 기간: {{club.start_date}} - {{club.end_date}}</div>
+        <a href=../../documents/{{club.upload_file}}>{{club.title}}파일</a>
+        {% if request.user == club.user %}
+        <div class="edit_tools">
+            <a href="{% url 'update_club' user.pk club.pk %}">수정하기</a>
+            <a href="{% url 'delete_club' user.pk club.pk %}">삭제하기</a>
+        </div>
+        {% endif %}
+    </div>
+    
+
+</div>
+>>>>>>> d5e49c6bb71bbfa786c619a95e2249e33bab0904
 {% endblock content %}

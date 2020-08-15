@@ -1,16 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% block title %}{% endblock title %}{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'detail_other.css' %}"> {% endblock css %}
 
 {% block content %}
-<div>
-    <div>{{other.title}}</div>
-    <div>{{other.summary}}</div>
-    
-    <div>{{other.upload_file}}</div>
+<div class="other_entire">
+    <img src="{% static 'create_image/other.png'%}" class="other_image" height= 60%; width= 30%;>
+    <div class="other_body">
+        <div class="other_title">{{other.title}}</div>
+        <div class="other_summary">{{other.summary}}</div>
+        
+        <a href=../../documents/{{other.upload_file}}>{{other.title}}파일</a>
+        {% if request.user == other.user %}
+        <div class="edit_tools">
+            <a href="{% url 'update_other' user.pk other.pk %}">수정하기</a>
+            <a href="{% url 'delete_other' user.pk other.pk %}">삭제하기</a>
+        </div>
+        {% endif %}
+    </div>
 </div>
 
+<<<<<<< HEAD
 {% if request.user == other.user %}
     <a href="{% url 'update_other' user.pk other.pk %}">수정하기</a>
     <a href="{% url 'delete_other' user.pk other.pk %}">삭제하기</a>
 {% endif %}
+=======
+>>>>>>> d5e49c6bb71bbfa786c619a95e2249e33bab0904
 
 {% endblock content %}

@@ -1,0 +1,41 @@
+.intern_entire {
+    display: flex;
+    height: 300px;
+    border: 6px solid #D25430;
+    width: 50%;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 25px;
+    color: rgb(127,127,127);
+}
+.intern_image {
+    margin-top: 5%;
+}
+.intern_body {
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.intern_title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #D25430;
+}
+
+.intern_summary {
+    font-size: 1.3rem;
+}
+
+.intern_date {
+    font-size: 1rem;
+
+}
+
+
+.edit_tools {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}

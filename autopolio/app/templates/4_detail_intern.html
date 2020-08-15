@@ -1,16 +1,33 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% block title %}{% endblock title %}{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'detail_intern.css' %}"> {% endblock css %}
 
 {% block content %}
-<div>
-    <div>{{intern.title}}</div>
-    <div>{{intern.summary}}</div>
-    <div>{{intern.start_date}}</div>
-    <div>{{intern.end_date}}</div>
-    <div>{{intern.upload_file}}</div>
+
+
+<div class="intern_entire">
+    <img src="{% static 'create_image/intern.png'%}" class="intern_image" height= 70%; width= 40%;>
+    <div class="intern_body">
+        <div class="intern_title">{{intern.title}}</div>
+        <div class="intern_summary">설명: {{intern.summary}}</div>
+        <div class="intern_date">인턴기간: {{intern.start_date}} - {{intern.end_date}}</div>
+        
+        <a href=../../documents/{{intern.upload_file}}>{{intern.title}}파일</a>
+        {% if request.user == intern.user %}
+        <div class="edit_tools">
+
+            <a href="{% url 'update_intern' user.pk intern.pk %}">수정하기</a>
+            <a href="{% url 'delete_intern' user.pk intern.pk %}">삭제하기</a>
+        </div>
+        {% endif %}
+    
+    </div>
 </div>
 
+<<<<<<< HEAD
 {% if request.user == intern.user %}
     <a href="{% url 'update_intern' user.pk intern.pk %}">수정하기</a>
     <a href="{% url 'delete_intern' user.pk intern.pk %}">삭제하기</a>
 {% endif %}
+=======
+>>>>>>> d5e49c6bb71bbfa786c619a95e2249e33bab0904
 {% endblock content %}

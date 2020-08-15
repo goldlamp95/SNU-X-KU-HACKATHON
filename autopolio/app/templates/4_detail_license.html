@@ -1,18 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% block title %}{% endblock title %}{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'detail_license.css' %}"> {% endblock css %}
 
 {% block content %}
 
-{% load static %}
-<div>
-    <div>{{license.title}}</div>
-    <div>{{license.score}}</div>
-    <div>{{license.date_achieved}}</div>
-    <div>{{license.date_added}}</div>
-    <img src=../../documents/{{license.upload_file}} height=300px;>
+<div class="license_entire">
+    <img src="{% static 'create_image/license.png'%}" class="license_image" height= 50%; width= 40%;>
+    <div class="license_body">
+        <div class="license_title">{{license.title}}</div>
+        <div class="license_score">점수: {{license.score}}</div>
+        <div class="license_date_achieved">취득 날짜: {{license.date_achieved}}</div>
+        <div class="license_date_added"> {{license.date_added}}에 업로드 됨</div>
+        
+        <a href=../../documents/{{license.upload_file}}>{{license.title}}파일</a>
+        {% if request.user == license.user %}
+        <div class="edit_tools">
+            <a href="{% url 'update_license' user.pk license.pk %}">수정하기</a>
+            <a href="{% url 'delete_license' user.pk license.pk %}">삭제하기</a>
+        </div>
+        {% endif %}
+    </div>
 </div>
 
+<<<<<<< HEAD
 {% if request.user == license.user %}
     <a href="{% url 'update_license' user.pk license.pk %}">수정하기</a>
     <a href="{% url 'delete_license' user.pk license.pk %}">삭제하기</a>
 {% endif %}
+=======
+>>>>>>> d5e49c6bb71bbfa786c619a95e2249e33bab0904
 {% endblock content %}
