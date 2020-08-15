@@ -1,0 +1,39 @@
+.grey {
+  color: #595959;
+}
+
+.red {
+  color: #d25430;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 130px auto;
+  /* background-color: yellow; */
+}
+
+.resumeBox {
+  border: 3px solid #d25430;
+  border-radius: 5px;
+  padding: 20px;
+  width: 300px;
+  height: 380px;
+  margin: 10px;
+  /* background-color: yellowgreen; */
+}
+
+.resume a {
+  color: #595959;
+  text-decoration: none;
+}
+
+.follow {
+  border: 2px solid #595959;
+  padding: 2px;
+  border-radius: 5px;
+  width: 100px;
+}
