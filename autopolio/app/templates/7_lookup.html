@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
+
 
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'lookup.css' %}" />
 
 <head>
     <meta charset="UTF-8">
@@ -13,104 +15,107 @@
 </head>
 
 <body>
-    {% for filtered_user in filtered_users|dictsortreversed:"like_users.count" %}
-        {{filtered_user.user.id}}
-        {{user.autouser.university}}
+    <div class="container">
+        {% for filtered_user in filtered_users|dictsortreversed:"like_users.count" %}
+        <!-- {{filtered_user.user.id}} -->
+        <!-- {{user.autouser.university}} -->
         {% if filtered_user in follow_list%}
-            <div class="resumeBox">
-                <div class="resume"> {{filtered_user.name }}
-                    <h3> 좋아요 수: {{filtered_user.like_users.count}} </h3>
-                    <div class="licenseBox">
-                        <h1> 자격증 목록 </h1>
-                        {% for license in licenses%}
-                            {% if license.user.id == filtered_user.user.id %}
-                                <a href= "{% url 'detail_intern' filtered_user.user.id intern.id%}">{{license.title }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="clubBox">
-                        <h1> 동아리 목록 </h1>
-                        {% for club in clubs%}
-                            {% if club.user.id == filtered_user.user.id %}
-                                <a href= "{% url 'detail_club' filtered_user.user.id club.id%}">{{club.title }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="internBox">
-                        <h1> 인턴 목록 </h1>
-                        {% for intern in interns%}
-                            {% if intern.user.id == filtered_user.user.id %}
-                                <a href= "{% url 'detail_intern' filtered_user.user.id intern.id%}">{{intern.title }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>    
-                    <div class="paperBox">
-                        <h1> 논문/프로젝트 목록 </h1>
-                        {% for paper in papers%}
-                            {% if paper.user.id == filtered_user.user.id %}
-                                <a href= "{% url 'detail_paper' filtered_user.user.id paper.id%}">{{paper.title }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div> 
-                    <div class="otherBox">
-                        <h1> 기타 활동 </h1>
-                        {% for other in others%}
-                            {% if other.user.id == filtered_user.user.id %}
-                                <a href= "{% url 'detail_other' filtered_user.user.id other.id%}">{{other.title }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>  
-                </div> 
-            </div>
-        {% else %}
-            <div class="resumeBox">
-                <div class="resume"> *** 님의 정보입니다.
-                    <h3> 좋아요 수: {{filtered_user.like_users.count}} </h3>
-                    <a href="{% url 'follow' filtered_user.user.id%}">팔로우하기</a>
-                    <div class="licenseBox">
-                        <h1> 자격증 목록 </h1>
-                        {% for license in licenses%}
-                            {% if license.user.id == filtered_user.user.id %}
-                                <p>{{license.title }}</p>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="clubBox">
-                        <h1> 동아리 목록 </h1>
-                        {% for club in clubs%}
-                            {% if club.user.id == filtered_user.user.id %}
-                                <p>{{club.title }}</p>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="internBox">
-                        <h1> 인턴 목록 </h1>
-                        {% for intern in interns%}
-                            {% if intern.user.id == filtered_user.user.id %}
-                                <p>{{intern.title }}</p>
-                            {% endif %}
-                        {% endfor %}
-                    </div>    
-                    <div class="paperBox">
-                        <h1> 논문/프로젝트 목록 </h1>
-                        {% for paper in papers%}
-                            {% if paper.user.id == filtered_user.user.id %}
-                                <p>{{paper.title }}</p>
-                            {% endif %}
-                        {% endfor %}
-                    </div> 
-                    <div class="otherBox">
-                        <h1> 기타 활동 </h1>
-                        {% for other in others%}
-                            {% if other.user.id == filtered_user.user.id %}
-                                <p>{{other.title }}</p>
-                            {% endif %}
-                        {% endfor %}
-                    </div>   
+        <div class="resumeBox">
+            <div class="resume red"> {{filtered_user.name }}님의 정보입니다.
+                <h3 class="grey"> 좋아요 수: {{filtered_user.like_users.count}} </h3>
+                <p class="follow grey">팔로우한 유저</p>
+                <div class="licenseBox">
+                    <h3 class="grey"> 자격증 목록 </h3>
+                    {% for license in licenses%}
+                    {% if license.user.id == filtered_user.user.id %}
+                    <a href="{% url 'detail_intern' filtered_user.user.id intern.id%}">{{license.title }}</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="clubBox">
+                    <h3 class="grey"> 동아리 목록 </h3>
+                    {% for club in clubs%}
+                    {% if club.user.id == filtered_user.user.id %}
+                    <a href="{% url 'detail_club' filtered_user.user.id club.id%}">{{club.title }}</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="internBox">
+                    <h3 class="grey"> 인턴 목록 </h3>
+                    {% for intern in interns%}
+                    {% if intern.user.id == filtered_user.user.id %}
+                    <a href="{% url 'detail_intern' filtered_user.user.id intern.id%}">{{intern.title }}</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="paperBox">
+                    <h3 class="grey"> 논문/프로젝트 목록 </h3>
+                    {% for paper in papers%}
+                    {% if paper.user.id == filtered_user.user.id %}
+                    <a href="{% url 'detail_paper' filtered_user.user.id paper.id%}">{{paper.title }}</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="otherBox">
+                    <h3 class="grey"> 기타 활동 </h3>
+                    {% for other in others%}
+                    {% if other.user.id == filtered_user.user.id %}
+                    <a href="{% url 'detail_other' filtered_user.user.id other.id%}">{{other.title }}</a>
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
+        </div>
+        {% else %}
+        <div class="resumeBox">
+            <div class="resume red"> *** 님의 정보입니다.
+                <h3 class="grey"> 좋아요 수: {{filtered_user.like_users.count}} </h3>
+                <a class="follow" href="{% url 'follow' filtered_user.user.id%}">팔로우하기</a>
+                <div class="licenseBox">
+                    <h3 class="grey"> 자격증 목록 </h3>
+                    {% for license in licenses%}
+                    {% if license.user.id == filtered_user.user.id %}
+                    <p class="grey">{{license.title }}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="clubBox">
+                    <h3 class="grey"> 동아리 목록 </h3>
+                    {% for club in clubs%}
+                    {% if club.user.id == filtered_user.user.id %}
+                    <p>{{club.title }}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="internBox">
+                    <h3 class="grey"> 인턴 목록 </h3>
+                    {% for intern in interns%}
+                    {% if intern.user.id == filtered_user.user.id %}
+                    <p>{{intern.title }}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="paperBox">
+                    <h3 class="grey"> 논문/프로젝트 목록 </h3>
+                    {% for paper in papers%}
+                    {% if paper.user.id == filtered_user.user.id %}
+                    <p>{{paper.title }}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="otherBox">
+                    <h3 class="grey"> 기타 활동 </h3>
+                    {% for other in others%}
+                    {% if other.user.id == filtered_user.user.id %}
+                    <p>{{other.title }}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
         {% endif %}
-    {% endfor %}
+        {% endfor %}
+    </div>
 
-    </html>
+
     {% endblock content %}
