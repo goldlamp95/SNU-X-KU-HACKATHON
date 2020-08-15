@@ -1,0 +1,23 @@
+.signup_main {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 340px 450px;
+  justify-content: center;
+}
+
+.signup_image {
+  margin: 80px;
+  align-items: center;
+  justify-content: center;
+}
+.signup_image > * {
+  width: 100%;
+  align-content: center;
+}
+
+.signup_form {
+  display: grid;
+  grid-template-rows: 1fr 11fr 1fr;
+}
