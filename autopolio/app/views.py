@@ -202,6 +202,10 @@ def lookup(request):
 def blurredlist(request, user_pk):
     pass
 
+@login_required(login_url='/registration/login')
+def mypage(request, user_pk):
+    pass
+
 
 def signup(request):
     if request.method == "POST":
