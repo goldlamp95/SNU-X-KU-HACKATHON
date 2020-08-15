@@ -216,7 +216,6 @@ def blurredlist(request, user_pk):
 def mypage(request, user_pk):
     pass
 
-
 def signup(request):
     if request.method == "POST":
         found_user = User.objects.filter(username=request.POST['username'])
@@ -251,9 +250,15 @@ def logout(request):
     return redirect('login')
 
 def lookup(request):
-    my_occupation=user.AutoUser.occupation
-    filtered_users=Autouser.objects.filter(occupation=my_occupation)
-    return render(request, 'templates/7_lookup.html',{'filtered_users':filtered_users})
+    user=request.user
+    my_occupation=user.autouser.occupation
+    licenses=License.objects.all()
+    clubs=Club.objects.all()
+    papers=Paper.objects.all()
+    interns=Intern.objects.all()
+    others=Other.objects.all()
+    filtered_users=AutoUser.objects.filter(occupation=my_occupation).exclude(user=user)
+    return render(request, '7_lookup.html',{'filtered_users':filtered_users,'clubs':clubs,'papers':papers,'interns':interns,'others':others,'licenses':licenses})
 
 
 def mypage(request):
@@ -266,3 +271,10 @@ def mypage(request):
         return redirect('main')
     else:
         return render(request, 'registration/mypage.html')
+
+def follow(request, user_pk):
+    follow_from = AutoUser.objects.get(user_id = request.user.id)
+    follow_to = AutoUser.objects.get(user_id = user_pk)
+    f=Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
+    f.save()
+    return redirect('/lookup')

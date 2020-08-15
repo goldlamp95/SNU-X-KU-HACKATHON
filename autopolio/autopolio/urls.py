@@ -52,7 +52,8 @@ urlpatterns = [
     path('delete_paper/<int:user_pk>/<int:paper_pk>', views.delete_paper, name="delete_paper"),
     path('delete_other/<int:user_pk>/<int:other_pk>', views.delete_other, name="delete_other"),
     # 7번
-    path('lookup', views.lookup, name="lookup"),
+    path('lookup/', views.lookup, name="lookup"),
+    path('lookup/<int:user_pk>', views.follow, name="follow"),
     path('blurredlist/<int:user_pk>', views.blurredlist, name="blurredlist"),
     # authentication
     path('registration/signup', views.signup, name="signup"),

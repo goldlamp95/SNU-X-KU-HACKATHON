@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.fields import (
     DateField, DateTimeField, DurationField, Field, IntegerField, TimeField,
 )
-from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save 
+from django.dispatch import receiver  
 # Create your models here.
 
 
@@ -19,6 +19,8 @@ class AutoUser(models.Model):
     major = models.TextField(null = True)
     profile = models.FileField(upload_to='documents/%Y/%m/%d/',null=True)
     occupation=models.TextField(null = True)
+    like_users = models.ManyToManyField('self',blank=True,through='Like',symmetrical=False)
+    follows = models.ManyToManyField('self',through = 'Follow', blank=True, related_name='followed',symmetrical=False)
 
     def __str__(self):
         return self.name
@@ -97,3 +99,14 @@ class Other(models.Model):
 
     def __str__(self):
         return self.title
+
+class Like(models.Model):
+    user = models.ForeignKey(AutoUser,related_name = 'liked_from', on_delete=models.CASCADE)
+    liked_user = models.ForeignKey(AutoUser, related_name = 'like_to', on_delete=models.CASCADE)
+
+class Follow(models.Model):
+    follow_to = models.ForeignKey(AutoUser, related_name = 'follow_from', on_delete=models.CASCADE)
+    follow_from = models.ForeignKey(AutoUser, related_name = 'follow_to', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{} follows {}'.format(self.follow_from, self.follow_to)
