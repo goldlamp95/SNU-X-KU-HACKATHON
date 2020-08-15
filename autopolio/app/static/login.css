@@ -15,10 +15,10 @@ p {
 }
 
 .big_box {
-    justify-content: space-around;
-    align-content: center;
+    margin-top: 100px;
     display: flex;
-
+    justify-content: center;
+    align-content: center;
     
 }
 .login_box {
@@ -26,5 +26,5 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    margin-left: 200px;
 }
