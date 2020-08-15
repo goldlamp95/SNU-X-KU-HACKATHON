@@ -21,9 +21,34 @@ def login(request):
 def main(request):
     return render(request, '1_main.html')
 
-@login_required(login_url='/registration/login')
+
+from .forms import *
+# @login_required(login_url='/registration/login')
 def create(request):
-    pass
+    if request.method=='POST':
+        # license_form=LicenseForm(request.POST, request.FILES)
+        # intern_form=InternForm(request.POST, request.FILES)
+        # club_form=ClubForm(request.POST, request.FILES)
+        # paper_form=PaperForm(request.POST, request.FILES)
+        print(request.POST)
+        other_form=OtherForm(request.POST, request.FILES)
+        # if other_form.is_valid():
+        print(request.user)
+        newdoc = Other(
+            user = request.user,
+            title=request.POST['title'],
+            summary=request.POST['summary'],
+            upload_file=request.FILES['upload_file'])
+            # author_2 = request.user)
+        newdoc.save()
+        return redirect('create')
+        # else:
+        #     print(request.user)
+        #     print('error')
+    else:
+        other_form=OtherForm()
+    documents = Other.objects.all()
+    return render(request, '2_create.html', {'documents':documents,'form':other_form})    
 
 @login_required(login_url='/registration/login')
 def resume(request, user_pk):

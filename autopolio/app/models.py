@@ -20,33 +20,47 @@ class AutoUser(models.Model):
 
 
 class License(models.Model):
-    user = models.ForeignKey(AutoUser, on_delete = models.CASCADE)
-    title = models.TextField()
+    category = models.CharField(max_length=10, default='license')
+    user = models.ForeignKey(AutoUser, on_delete = models.CASCADE, related_name = 'license')
+    title = models.CharField(max_length=200)
     score = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     date_achieved = models.DateTimeField()
-    upload_image = models.ImageField(null=True, blank=True)
-    upload_file = models.FileField(upload_to="%Y/%m/%d")
+    # upload_image = models.ImageField(null=True, blank=True)
+    upload_file = models.FileField(upload_to='documents/%Y/%m/%d/')
 
 class Intern(models.Model):
+    category = models.CharField(max_length=10, default='intern')    
     user = models.ForeignKey(AutoUser, on_delete= models.CASCADE, related_name = 'intern')
-    title = models.TextField()
+    title = models.CharField(max_length=200)
     summary = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
     date = models.DateTimeField()
-    upload_image = models.ImageField(null=True, blank=True)
-    upload_file = models.FileField(upload_to='uploads/%Y/%m/%d/')
+    # upload_image = models.ImageField(null=True, blank=True)
+    upload_file = models.FileField(upload_to='documents/%Y/%m/%d/')
+
+class Club(models.Model):
+    category = models.CharField(max_length=10, default='club')
+    user = models.ForeignKey(AutoUser, on_delete = models.CASCADE, related_name = 'club')
+    title = models.CharField(max_length=200)
+    role = models.CharField(max_length=200)
+    summary = models.TextField()
+    upload_file = models.FileField(upload_to='documents/%Y/%m/%d/')
+
 
 class Paper(models.Model):
+    category = models.CharField(max_length=10, default='paper')
     user = models.ForeignKey(AutoUser, on_delete= models.CASCADE, related_name = 'paper')
-    title = models.TextField()
+    title = models.CharField(max_length=200)
     summary = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
-    upload_file = models.FileField(upload_to='uploads/%Y/%m/%d/')
+    upload_file = models.FileField(upload_to='documents/%Y/%m/%d/')
 
 class Other(models.Model):
-    title = models.TextField()
+    category = models.CharField(max_length=10, default='other')
+    user = models.ForeignKey(User, on_delete= models.CASCADE, related_name = 'other')   
+    title = models.CharField(max_length=200)
     summary = models.TextField()
-    upload_image = models.ImageField(null=True, blank=True)
+    # upload_image = models.ImageField(null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
-    upload_file = models.FileField(upload_to='uploads/%Y/%m/%d/')
+    upload_file = models.FileField(upload_to='documents/%Y/%m/%d/')
