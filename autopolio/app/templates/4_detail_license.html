@@ -11,6 +11,8 @@
     <img src=../../documents/{{license.upload_file}} height=300px;>
 </div>
 
-<a href="{% url 'update_license' user.pk license.pk %}">수정하기</a>
-<a href="{% url 'delete_license' user.pk license.pk %}">삭제하기</a>
+{% if request.user==license.user %}
+    <a href="{% url 'update_license' user.pk license.pk %}">수정하기</a>
+    <a href="{% url 'delete_license' user.pk license.pk %}">삭제하기</a>
+{% endif %}
 {% endblock content %}

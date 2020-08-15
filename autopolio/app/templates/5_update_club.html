@@ -1,13 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% block title %}{% endblock title %}{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static '5_update_club.css' %}"> {% endblock css %}
 
 {% block content %}
 <form method = 'POST'>
+    <p align="center">피드 업데이트</p>
     {% csrf_token %}
-    <input type="text" name="title" placeholder = '활동목록'>
-    <input type="text" name="summary" placeholder = '활동 경험에 대해서 써주세요'>
-    <input type="date" name="start_date">
-    <input type="date" name="end_date">
-    <input type="file" name="upload_file">
-    <button type = "submit">수정하기</button>
+    <div class="box">
+        <input type="text" name="title" placeholder = '활동목록'>
+        <input type="text" name="summary" placeholder = '활동 경험에 대해서 써주세요'>
+        <input type="date" name="start_date">
+        <input type="date" name="end_date">
+        <input type="file" name="upload_file">
+        <button type = "submit">수정하기</button>
+    </div>
 </form>
 {% endblock content %}
