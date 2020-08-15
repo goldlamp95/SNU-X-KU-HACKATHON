@@ -268,7 +268,7 @@ def lookup(request):
     others=Other.objects.all()
     filtered_users=AutoUser.objects.filter(occupation=my_occupation).exclude(user=user)
     follow_list=[]
-    number=Follow.objects.count()
+    number=Follow.objects.filter(follow_from=user.autouser).count()
 
     for i in range(number):
         follow_list.append(Follow.objects.filter(follow_from=user.autouser)[i].follow_to)
