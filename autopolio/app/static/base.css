@@ -1,0 +1,29 @@
+body {
+  margin-left: 0px;
+}
+
+.base_header {
+  height: 80px;
+  width: 100%;
+  position: fix;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: auto;
+}
+
+.header_menu {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px
+}
+
+.header_menu > *{
+  margin: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
