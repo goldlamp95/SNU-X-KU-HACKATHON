@@ -36,18 +36,8 @@ def create(request):
         club_form=ClubForm()
         paper_form=PaperForm()
         other_form=OtherForm()
-    # # for check
-    # license_documents = License.objects.all()
-    # intern_documents = Intern.objects.all()
-    # club_documents = Club.objects.all()
-    # paper_documents = Paper.objects.all()
-    # other_documents = Other.objects.all()
+
     return render(request, '2_create.html', {
-        # 'license_documents': license_documents,
-        # 'intern_documents': intern_documents, 
-        # 'club_documents': club_documents, 
-        # 'paper_documents': paper_documents, 
-        # 'other_documents': other_documents,  
         'license_form': license_form,
         'intern_form':intern_form,
         'club_form':club_form,
