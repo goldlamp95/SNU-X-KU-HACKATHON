@@ -1,4 +1,3 @@
-{{request.user.autouser.name}}
 {% for filtered_user in filtered_users|dictsortreversed:"like_users.count" %}
     {% if filtered_user in user.autouser.follows.all%}
         <div class="resumeBox">
@@ -48,8 +47,9 @@
         </div>
     {% else %}
         <div class="resumeBox">
-            <div class="resume"> {{filtered_user.user.id}} 님의 정보입니다.
+            <div class="resume"> *** 님의 정보입니다.
                 <h3> 좋아요 수: {{filtered_user.like_users.count}} </h3>
+                <a href="{% url 'follow' filtered_user.user.id%}">팔로우하기</a>
                 <div class="licenseBox">
                     <h1> 자격증 목록 </h1>
                     {% for license in licenses%}

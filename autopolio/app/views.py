@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import AutoUser,Intern, License, Club, Paper, Other
+from .models import *
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -271,3 +271,10 @@ def mypage(request):
         return redirect('main')
     else:
         return render(request, 'registration/mypage.html')
+
+def follow(request, user_pk):
+    follow_from = AutoUser.objects.get(user_id = request.user.id)
+    follow_to = AutoUser.objects.get(user_id = user_pk)
+    f=Follow.objects.create(follow_from=follow_from, follow_to=follow_to)
+    f.save()
+    return redirect('/lookup')
