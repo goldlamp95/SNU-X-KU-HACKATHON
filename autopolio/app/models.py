@@ -19,7 +19,8 @@ class AutoUser(models.Model):
     major = models.TextField(null = True)
     profile = models.ImageField(null=True, blank=True)
     occupation=models.TextField(null = True)
-    like_users = models.ManyToManyField('self',blank=True,through='Like')
+    like_users = models.ManyToManyField('self',blank=True,through='Like',symmetrical=False)
+    follows = models.ManyToManyField('self',through = 'Follow', blank=True, related_name='followed',symmetrical=False)
 
     def __str__(self):
         return self.name
@@ -102,3 +103,10 @@ class Other(models.Model):
 class Like(models.Model):
     user = models.ForeignKey(AutoUser,related_name = 'liked_from', on_delete=models.CASCADE)
     liked_user = models.ForeignKey(AutoUser, related_name = 'like_to', on_delete=models.CASCADE)
+
+class Follow(models.Model):
+    follow_to = models.ForeignKey(AutoUser, related_name = 'follow_from', on_delete=models.CASCADE)
+    follow_from = models.ForeignKey(AutoUser, related_name = 'follow_to', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{} follows {}'.format(self.follow_from, self.follow_to)
