@@ -28,7 +28,7 @@ class InternForm(forms.ModelForm):
         widgets = {
             'start_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
             'end_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
-            'summary': forms.Textarea(attrs={'rows':4, 'cols':23}),
+            'summary': forms.Textarea(attrs={'rows':4, 'cols':26}),
         }
         # fields = ['title']
 
@@ -39,7 +39,7 @@ class ClubForm(forms.ModelForm):
         widgets = {
             'start_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
             'end_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
-            'summary': forms.Textarea(attrs={'rows':4, 'cols':23}),
+            'summary': forms.Textarea(attrs={'rows':4, 'cols':26}),
         }
 
 class PaperForm(forms.ModelForm):
@@ -47,7 +47,7 @@ class PaperForm(forms.ModelForm):
         model = Paper
         fields = '__all__'
         widgets = {
-            'summary': forms.Textarea(attrs={'rows':4, 'cols':23})
+            'summary': forms.Textarea(attrs={'rows':4, 'cols':26})
         }
         
 
@@ -56,5 +56,5 @@ class OtherForm(forms.ModelForm):
         model = Other
         fields = '__all__'
         widgets = {
-            'summary': forms.Textarea(attrs={'rows':4, 'cols':23})
+            'summary': forms.Textarea(attrs={'rows':4, 'cols':26})
         }

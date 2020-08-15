@@ -28,7 +28,7 @@ def main(request):
 
 from .forms import *
 from .input import category_input
-# @login_required(login_url='/registration/login')
+@login_required(login_url='/registration/login')
 def create(request):
     if request.method=='POST':
         newdoc = category_input(request)

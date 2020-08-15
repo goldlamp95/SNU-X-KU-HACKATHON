@@ -40,6 +40,11 @@
   width: 180px;
 }
 
+/* .new_Btn {
+  /* // your css propterties */
+/* width: 180px;
+} */
+
 .input_direction {
   margin-right: 20px;
 }
@@ -73,6 +78,23 @@ button {
   background-repeat: no-repeat;
   cursor: pointer;
   overflow: hidden;
+  border: 2px solid;
   border-radius: 5px;
   border-color: #7f7f7f;
+  color: #7f7f7f;
+}
+
+.confirm_button {
+  width: 200px;
+  /* background-color: cadetblue; */
+  margin: 100px auto;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: #7f7f7f;
+  text-align: center;
+}
+
+.confirm_button a {
+  color: #7f7f7f;
+  text-decoration: none;
 }
