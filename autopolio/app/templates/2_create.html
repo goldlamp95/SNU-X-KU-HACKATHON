@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.title}}</p>
+        <p>{{ form.summary }}</p>
+        <p>{{ form.upload_file }}</p>
+        <button type="submit" value="제출">등록하기</button>
+    </form>
+    {% if documents%}
+    <ul>
+        {% for document in documents%}
+        <li>{{document.title}}{{document.user}}
+            <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
+            {{document.summary}}
+            {{document.date_added}}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No documents</p>
+    {% endif %}
+</body>
+
+</html>
