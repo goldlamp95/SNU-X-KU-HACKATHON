@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div>{{intern.title}}</div>
+    <div>{{intern.summary}}</div>
+    <div>{{intern.start_date}}</div>
+    <div>{{intern.end_date}}</div>
+    <div>{{intern.upload_file}}</div>
+</div>
+
+<a href="{% url 'update_intern' user.pk intern.pk %}">수정하기</a>
+
+{% endblock content %}

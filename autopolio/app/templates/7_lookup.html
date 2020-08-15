@@ -1,0 +1,36 @@
+{% for filtered_user in filtered_users %}
+    <div class="resumeBox">
+        <div class="resume"> {{filtered_user.name }}</div>
+
+            <div class="licenseBox">
+                <h1> 자격증 목록 </h1>
+                {% for licesne in filered_user.license_set.all%}
+                    {{license.title }}
+                {% endfor %}
+            </div>
+            <div class="clubBox">
+                <h1> 동아리 목록 </h1>
+                {% for club in filered_user.club_set.all%}
+                    {{club.title }}
+                {% endfor %}
+            </div>
+            <div class="internBox">
+                <h1> 인턴 목록 </h1>
+                {% for intern in filtered_user.intern_set.all%}
+                    {{intern.title }}
+                {% endfor %}
+            </div>    
+            <div class="paperBox">
+                <h1> 논문/프로젝트 목록 </h1>
+                {% for paper in filtered_user.paper_set.all%}
+                    {{paper.title }}
+                {% endfor %}
+            </div> 
+            <div class="otherBox">
+                <h1> 기타 활동 </h1>
+                {% for other in filtered_user.other_set.all%}
+                    {{other.title }}
+                {% endfor %}
+            </div>   
+    </div>
+{% endfor %}

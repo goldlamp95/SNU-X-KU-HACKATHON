@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div>{{club.title}}</div>
+    <div>{{club.summary}}</div>
+    <div>{{club.start_date}}</div>
+    <div>{{club.end_date}}</div>
+    <div>{{club.upload_file}}</div>
+</div>
+
+<a href="{% url 'update_club' user.pk club.pk %}">수정하기</a>
+
+{% endblock content %}
