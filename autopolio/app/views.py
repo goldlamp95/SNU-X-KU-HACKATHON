@@ -213,7 +213,7 @@ def signup(request):
         user.autouser.major = request.POST['major']
         user.autouser.occupation = request.POST['occupation']
         user.save()
-        
+        auth.login(request, user)
 
         return redirect('main')
     else:

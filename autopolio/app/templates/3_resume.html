@@ -19,7 +19,7 @@
     <div><a href="{% url 'detail_intern' user.pk intern.pk %}">{{intern.title}}</a></div>
     <div>{{intern.start_date}} - {{intern.end_date}}</div>
 </div>
-{% endfor %}    
+{% endfor %}
 
 
 <div>동아리/대외활동</div>
@@ -43,7 +43,7 @@
 <div>그 외 활동</div>
 {% for other in others %}
 <div>
-    <div><a href = "{% url 'detail_other' user.pk other.pk %}">{{other.title}}</a></div>
+    <div><a href="{% url 'detail_other' user.pk other.pk %}">{{other.title}}</a></div>
     <div>{{other.summary}}</div>
 </div>
 {% endfor %}
