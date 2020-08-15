@@ -1,15 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% block title %}{% endblock title %}{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'detail_paper.css' %}"> {% endblock css %}
 
 {% block content %}
-<div>
-    <div>{{paper.title}}</div>
-    <div>{{paper.summary}}</div>
-    <div>{{paper.upload_file}}</div>
+<div class="paper_entire">
+    <img src="{% static 'create_image/paper.png'%}" class="paper_image" height= 60%; width= 30%;>
+    <div class="paper_body">
+        <div class="paper_title">{{paper.title}}</div>
+        <div class="paper_summary">설명: {{paper.summary}}</div>
+        <a href=../../documents/{{paper.upload_file}}>{{paper.title}}파일</a>
+        {% if request.user == paper.user %}
+        <div class="edit_tools">
+            <a href="{% url 'update_paper' user.pk paper.pk %}">수정하기</a>
+            <a href="{% url 'delete_paper' user.pk paper.pk %}">삭제하기</a>
+        </div>
+        {% endif %}
+    </div>
 </div>
 
-{% if request.user==paper.user %}
-<a href="{% url 'update_paper' user.pk paper.pk %}">수정하기</a>
-<a href="{% url 'delete_paper' user.pk paper.pk %}">삭제하기</a>
-{% endif %}
 
 {% endblock content %}
