@@ -1,6 +1,5 @@
 <!-- login, signup, mypage nav bar로 -->
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +22,7 @@
                 나머지에는 내 피드, 로그아웃, 회원정보수정(mypage) -->
             
             {% if user.is_authenticated %}
-            <a href="{% url 'main' %}" class="logo"><img src="../static/logo.png" height= 100%;></a>
+            <a href="{% url 'main' %}" class="logo"><img src="{% static 'logo.png'%}" height= 100%;></a>
             <div class="header_menu">
                 <div><p>안녕하세요,</p><span
                         style="font-weight: bold; font-size: 28px">{{user.username}}</span><p>님</p></div>
