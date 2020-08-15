@@ -48,6 +48,11 @@ def create(request):
         'other_form':other_form
         })    
 
+from .ocr import toefl_ocr
+def create_OCR(request):
+    newdoc = toefl_ocr(request)
+    newdoc.save()
+    return redirect('create')
 
 def resume(request, user_pk):
     if request.method == 'GET':

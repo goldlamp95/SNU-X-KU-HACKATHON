@@ -26,9 +26,11 @@ urlpatterns = [
     # 랜딩 페이지가 로그인에 같이 있음
     path('', views.login, name="login"),
     # 1번
-    path('main', views.main, name="main"),
+    path('main/', views.main, name="main"),
     # 2번
     path('create', views.create, name="create"),
+    # 2-2번 OCR API 사용하기
+    path('create_OCR/', views.create_OCR, name="create_OCR"),
     # 3번
     path('resume/<int:user_pk>', views.resume, name="resume"),
     # 4번
