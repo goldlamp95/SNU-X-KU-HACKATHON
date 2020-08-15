@@ -23,32 +23,37 @@ def main(request):
 
 
 from .forms import *
+from .input import category_input
 # @login_required(login_url='/registration/login')
 def create(request):
     if request.method=='POST':
-        # license_form=LicenseForm(request.POST, request.FILES)
-        # intern_form=InternForm(request.POST, request.FILES)
-        # club_form=ClubForm(request.POST, request.FILES)
-        # paper_form=PaperForm(request.POST, request.FILES)
-        print(request.POST)
-        other_form=OtherForm(request.POST, request.FILES)
-        # if other_form.is_valid():
-        print(request.user)
-        newdoc = Other(
-            user = request.user,
-            title=request.POST['title'],
-            summary=request.POST['summary'],
-            upload_file=request.FILES['upload_file'])
-            # author_2 = request.user)
+        newdoc = category_input(request)
         newdoc.save()
         return redirect('create')
-        # else:
-        #     print(request.user)
-        #     print('error')
     else:
+        license_form=LicenseForm()
+        intern_form=InternForm()
+        club_form=ClubForm()
+        paper_form=PaperForm()
         other_form=OtherForm()
-    documents = Other.objects.all()
-    return render(request, '2_create.html', {'documents':documents,'form':other_form})    
+    # # for check
+    # license_documents = License.objects.all()
+    # intern_documents = Intern.objects.all()
+    # club_documents = Club.objects.all()
+    # paper_documents = Paper.objects.all()
+    # other_documents = Other.objects.all()
+    return render(request, '2_create.html', {
+        # 'license_documents': license_documents,
+        # 'intern_documents': intern_documents, 
+        # 'club_documents': club_documents, 
+        # 'paper_documents': paper_documents, 
+        # 'other_documents': other_documents,  
+        'license_form': license_form,
+        'intern_form':intern_form,
+        'club_form':club_form,
+        'paper_form':paper_form,
+        'other_form':other_form
+        })    
 
 @login_required(login_url='/registration/login')
 def resume(request, user_pk):
@@ -153,7 +158,8 @@ def logout(request):
     auth.logout(request)
     return redirect('login')
 
-@login_required(login_url='/registration/login')
-def mypage(request):
-    auth.logout(request)
-    return redirect('login')
+def lookup(request):
+    my_occupation=user.AutoUser.occupation
+    filtered_users=Autouser.objects.filter(occupation=my_occupation)
+    return render(request, 'templates/7_lookup.html',{'filtered_users':filtered_users})
+
