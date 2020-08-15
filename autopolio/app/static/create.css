@@ -68,6 +68,11 @@
   font-weight: 700;
 }
 
-/* button {
+button {
   background-color: Transparent;
-} */
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
+  border-color: #7f7f7f;
+}
