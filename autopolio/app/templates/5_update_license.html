@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method = 'POST'>
+    {% csrf_token %}
+    <input type="text" name="title" placeholder = '자격증을 입력하세요'>
+    <input type="number" name="score" placeholder = '점수를 입력하세요'>
+    <input type="date" name="date_achieved" placeholder = '취득 날짜를 입력하세요'>
+    <input type="file" name="upload_file">
+    <button type = "submit">수정하기</button>
+</form>
+{% endblock content %}
