@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
+<div class="box">
     <div>{{club.title}}</div>
     <div>{{club.summary}}</div>
     <div>{{club.start_date}}</div>
@@ -9,7 +9,7 @@
 </div>
 
 {% if request.user==club.user %}
-<a href="{% url 'update_club' user.pk club.pk %}">수정하기</a>
-<a href="{% url 'delete_club' user.pk club.pk %}">삭제하기</a>
+    <a href="{% url 'update_club' user.pk club.pk %}">수정하기</a>
+    <a href="{% url 'delete_club' user.pk club.pk %}">삭제하기</a>
 {% endif %}
 {% endblock content %}
