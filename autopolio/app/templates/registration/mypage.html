@@ -7,5 +7,37 @@
 </head>
 <body>
     <h1>회원 정보 수정</h1>
+    <div class="questionBox" style="width:500px; height:auto">
+        <form method="POST" action="">
+          {% csrf_token %}
+          사용자 ID:
+          <br>
+          <input id="infochange_subtitle" name="username" type="text" value={{user.username}}>
+          <br>
+          <br>
+          이메일
+          <br>
+          <input id="infochange_subtitle" name="email" type="text" value={{user.email}}>
+          <br>
+          <br>
+          소속 대학교:
+          <br>
+          <input id="infochange_subtitle" name="university" type="text" value={{user.profile.university}}>
+          <br>
+          <br>
+          소속 전공:
+          <br>
+          <input id="infochange_subtitle" name="major" type="text" value={{user.profile.major}}>
+          <br>
+          <br>
+          계열:
+          <br>
+          <input id="infochange_subtitle" name="occupation" type="text" value={{user.profile.occupation}}>
+          <br>
+          <br>
+          <input id="info_change" type="submit" value="Change">
+          <br>
+        </form>
+      </div>
 </body>
 </html>
